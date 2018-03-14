@@ -14,29 +14,33 @@ if ($count == 1){
     }
 }
 if (isset($_SESSION['username'])){
-    header("location: UserProfile.php");
+    header("location: warehouse.php");
 }else{
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="styles/login.css">
     <title>Warehouse</title>
 </head>
 <body>
-    <div class="container">
-        <form class="form-signin" method="POST">
-            <?php if(isset($fmsg)){ ?><div class="alert alert-danger" role="alert"> <?php echo $fmsg; ?> </div><?php } ?>
-            <h2 class="form-signin-heading">Logowanie</h2>
-            <div class="input-group">
-                <input type="text" name="username" class="form-control" placeholder="Username" required>
-            </div>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-        </form>
+    <div id="login-form">
+        <div class="container">
+            <form class="form-signin" method="POST">
+                <h2>Panel logowania</h2>
+                <div>
+                    <label for="inputPassword" class="sr-only">Login:</label>
+                    <input type="text" name="username" class="form-control" placeholder="Username" required>
+                    <label for="inputPassword" class="sr-only">Hasło:</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj się</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
