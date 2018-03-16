@@ -41,6 +41,7 @@ body {
     clear: both;
     float: left;
     margin-left: 10%;
+    line-height: 36px;
     margin-bottom: 10px;
 }
 .form-signin input[type="text"],
@@ -52,7 +53,28 @@ body {
     padding: 10px;
     box-sizing: border-box;
     margin-bottom: 10px;
+    border: 1px solid #dadada;
 }
-.form-signin input[type="submit"] {
-    
+.form-signin button {
+    display: inline-block;
+    float: right;
+    margin-right: 5%;
+    border-radius: 0px;
+    padding: 7px 30px;
+    background: #9C27B0;
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    transition: box-shadow .2s ease-in-out;
+    transition-property: box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    transition-delay: initial;
+    box-shadow: 0px 0px 0px #000;
+}
+.form-signin button:hover {
+    background: #AB47BC;
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 2px rgba(0,0,0,.2);
+    box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 2px rgba(0,0,0,.2);
 }
