@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ButtonAppBar from './containers/appBar';
+import App from './components/App';
 
 ReactDOM.render(<div>
-    <ButtonAppBar></ButtonAppBar>
+    <App></App>
 </div>, document.querySelector('#root'));
