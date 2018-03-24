@@ -5,16 +5,22 @@ import { withStyles } from "material-ui/styles";
 import Drawer from "material-ui/Drawer";
 import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
-
-import { MenuItem } from "material-ui/Menu";
+import Button from 'material-ui/Button';
 import TextField from "material-ui/TextField";
 import Typography from "material-ui/Typography";
 
-const drawerWidth = 240;
+import { MenuItem } from "material-ui/Menu";
 
+const drawerWidth = 240;
 const styles = theme => ({
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`
+  },
+  root: {
+    flexGrow: 1,
+  },
+  flex: {
+    flex: 1,
   }
 });
 
@@ -23,11 +29,12 @@ var MainAppBar = (props) => {
     return (
         <AppBar
             position="absolute"
-            className={classNames(classes.appBar, classes[`appBar-left`])}>
+            className={classNames(classes.appBar, classes[`appBar-left`], classes.root)}>
             <Toolbar>
-                <Typography variant="title" color="inherit" noWrap>
+                <Typography variant="title" color="inherit" noWrap className={classes.flex}>
                 {props.title}
                 </Typography>
+                <Button color="inherit" href="logout.php">Wyloguj się</Button>
             </Toolbar>
         </AppBar>
     )
