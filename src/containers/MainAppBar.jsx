@@ -8,20 +8,21 @@ import Toolbar from "material-ui/Toolbar";
 import Button from 'material-ui/Button';
 import TextField from "material-ui/TextField";
 import Typography from "material-ui/Typography";
-
 import { MenuItem } from "material-ui/Menu";
+
+import UserInfo from './UserInfo';
 
 const drawerWidth = 240;
 const styles = theme => ({
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`
-  },
-  root: {
-    flexGrow: 1,
-  },
-  flex: {
-    flex: 1,
-  }
+    appBar: {
+        width: `calc(100% - ${drawerWidth}px)`
+    },
+    root: {
+        flexGrow: 1,
+    },
+    flex: {
+        flex: 1,
+    }
 });
 
 var MainAppBar = (props) => {
@@ -34,6 +35,7 @@ var MainAppBar = (props) => {
                 <Typography variant="title" color="inherit" noWrap className={classes.flex}>
                 {props.title}
                 </Typography>
+                <UserInfo />
                 <Button color="inherit" href="logout.php">Wyloguj się</Button>
             </Toolbar>
         </AppBar>

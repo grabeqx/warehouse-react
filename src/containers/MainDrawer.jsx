@@ -3,13 +3,9 @@ import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Divider from "material-ui/Divider";
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import AccountCircle from 'material-ui-icons/AccountCircle';
-import Description from 'material-ui-icons/Description';
-import ViewList from 'material-ui-icons/ViewList';
-import AddCircle from 'material-ui-icons/AddCircle';
-import ContentPaste from 'material-ui-icons/ContentPaste';
-import Create from 'material-ui-icons/Create';
 import { Link } from 'react-router-dom'
+
+import MENU from '../constants/menu';
 
 const drawerWidth = 240;
 const styles = theme => ({
@@ -33,54 +29,19 @@ var MainDraver = (props) => {
             <div className={classes.toolbar} />
             <Divider />
             <List>
-                <Link to="/" style={{ textDecoration: 'none' }}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <ViewList />
-                        </ListItemIcon>
-                        <ListItemText primary="Magazyn" />
-                    </ListItem>
-                </Link>
-                <Link to="/order" style={{ textDecoration: 'none' }}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <ContentPaste />
-                        </ListItemIcon>
-                        <ListItemText primary="Zlecenie" />
-                    </ListItem>
-                </Link>
-                <Link to="/report" style={{ textDecoration: 'none' }}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <Description />
-                        </ListItemIcon>
-                        <ListItemText primary="Raport" />
-                    </ListItem>
-                </Link>
-                <Link to="/add" style={{ textDecoration: 'none' }}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AddCircle />
-                        </ListItemIcon>
-                        <ListItemText primary="Dodaj produkt" />
-                    </ListItem>
-                </Link>
-                <Link to="/fill" style={{ textDecoration: 'none' }}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <Create />
-                        </ListItemIcon>
-                        <ListItemText primary="Uzupełnij stany" />
-                    </ListItem>
-                </Link>
-                <Link to="/admin" style={{ textDecoration: 'none' }}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AccountCircle />
-                        </ListItemIcon>
-                        <ListItemText primary="Admin" />
-                    </ListItem>
-                </Link>
+                {MENU.map((menuItem, index) => {
+                    let MenuIcon = menuItem.icon;
+                    return (
+                        <Link to={menuItem.url} key={index} style={{ textDecoration: 'none' }}>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <MenuIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={menuItem.name} />
+                            </ListItem>
+                        </Link>
+                        )
+                })}
             </List>
         </Drawer> )
 };

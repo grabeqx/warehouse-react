@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { history } from '../stores/AppStore';
 import { connect } from 'react-redux';
 
-import Layout from './Layout';
+import Content from '../containers/Content';
 import Warehouse from './Warehouse';
 import Report from './Report';
 import AddProduct from './AddProduct';
@@ -22,7 +22,7 @@ class App extends React.Component {
     render() {
         return (
             <Router history={history}>
-                <Layout>
+                <Content pageName={this.props.pageName}>
                     <Switch>
                         <Route exact path="/" component={Warehouse} />
                         <Route exact path="/order" component={Order} />
@@ -31,12 +31,18 @@ class App extends React.Component {
                         <Route path="/fill" component={Fillstate} />
                         <Route path="/admin" component={AdminPanel} />
                     </Switch>
-                </Layout>
+                </Content>
             </Router>
         )
     }
 
 }
 
+function mapStateToProps(state) {
+    return {
+        pageName: state.appReducer.pageName
+    }
+}
 
-export default App;
+
+export default connect(mapStateToProps, null)(App);
