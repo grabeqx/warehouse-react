@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import SearchComponent from './SearchComponent';
 import ProductTable from '../containers/ProductTable';
+import ProductTableComponent from './ProductTableComponent';
 
 class Warehouse extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class Warehouse extends React.Component {
         return (
             <div>
                 <SearchComponent />
-                <ProductTable />
+                <ProductTableComponent />
             </div>
         )
     }

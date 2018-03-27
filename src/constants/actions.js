@@ -1,5 +1,7 @@
 const ACTIONS = {
-    GET_USER: Symbol('GET_USER')
+    GET_USER: Symbol('GET_USER'),
+    GET_PRODUCTS: Symbol('GET_PRODUCTS'),
+    GET_PRODUCTS_SUCCESS: Symbol('GET_PRODUCTS_SUCCESS')
 }
 
 export default ACTIONS;
