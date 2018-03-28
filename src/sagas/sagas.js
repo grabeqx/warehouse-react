@@ -8,8 +8,14 @@ function* getProducts(action) {
     yield put({type: ACTIONS.GET_PRODUCTS_SUCCESS, payload: products});
 }
 
+function* searchProducts(action) {
+    const products = yield call(warehouseActions.getProducts, action.payload);
+    yield put({type: ACTIONS.GET_PRODUCTS_SUCCESS, payload: products});
+}
+
 function* warehouseSaga() {
     yield takeLatest(ACTIONS.GET_PRODUCTS, getProducts);
+    yield takeLatest(ACTIONS.SEARCH_PRODUCTS, searchProducts);
 }
 
 export default warehouseSaga;

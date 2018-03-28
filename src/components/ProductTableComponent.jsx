@@ -13,8 +13,8 @@ class ProductTableComponent extends React.Component {
         };
     }
 
-    componentDidMount() {
-        this.props.getProducts(2,40);
+    componentWillMount() {
+        this.props.getProducts(this.props.productPage, this.props.productStep, this.props.query);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -36,7 +36,10 @@ class ProductTableComponent extends React.Component {
 
 function mapstateToProps(state) {
     return {
-        products: state.productReducer.products
+        products: state.productReducer.products,
+        productPage: state.productReducer.productPage,
+        productStep: state.productReducer.productStep,
+        query: state.productReducer.query
     }
 }
 

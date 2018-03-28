@@ -2,8 +2,9 @@ import axios from 'axios';
 
 const warehouseActions = {
 
-    getProducts: function(action) {
-        return axios.post('/dbCall.php?action=getProducts')
+    getProducts: function(data) {
+        let limitFrom = data.page * data.step;
+        return axios.get(`/dbCall.php?action=getProducts&step=${data.step}&limitFrom=${limitFrom}&query=${data.query}`)
             .then((response) => response.data)
     }
     

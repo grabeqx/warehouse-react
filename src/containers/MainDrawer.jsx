@@ -10,7 +10,9 @@ import MENU from '../constants/menu';
 const drawerWidth = 240;
 const styles = theme => ({
     drawerPaper: {
-        position: 'relative',
+        position: 'fixed',
+        top: '0px',
+        left: '0px',
         width: drawerWidth,
     },
     toolbar: theme.mixins.toolbar

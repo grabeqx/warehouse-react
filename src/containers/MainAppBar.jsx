@@ -15,7 +15,8 @@ import UserInfo from './UserInfo';
 const drawerWidth = 240;
 const styles = theme => ({
     appBar: {
-        width: `calc(100% - ${drawerWidth}px)`
+        width: `calc(100% - ${drawerWidth}px)`,
+        
     },
     root: {
         flexGrow: 1,
@@ -29,7 +30,7 @@ var MainAppBar = (props) => {
     const { classes } = props;
     return (
         <AppBar
-            position="absolute"
+            position="fixed"
             className={classNames(classes.appBar, classes[`appBar-left`], classes.root)}>
             <Toolbar>
                 <Typography variant="title" color="inherit" noWrap className={classes.flex}>
