@@ -7,10 +7,10 @@ if (isset($_POST['username']) and isset($_POST['password'])){
     $query = "SELECT * FROM `users` WHERE username='$username' and password='$password'";
     $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
     $count = mysqli_num_rows($result);
-if ($count == 1){
-    $_SESSION['username'] = $username;
+    if ($count == 1){
+        $_SESSION['username'] = $username;
     }else{
-    $fmsg = "Invalid Login Credentials.";
+        $fmsg = "Invalid Login Credentials.";
     }
 }
 ?>
@@ -46,7 +46,20 @@ if ($count == 1){
         </div>
     <?php
     } else {
+        $session_user = $_SESSION['username'];
+        $query = "SELECT * FROM users WHERE username='$session_user'";
+        $result = mysqli_query($connection, $query);
+        $session_user_id = 0;
+        if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+                $session_user_id = $row["id"];
+            }
+        }
     ?>
+        <script type="text/javascript">
+            window.user='<?php echo $session_user;?>';
+            window.userId=<?php echo $session_user_id;?>;
+        </script>
         <div id="root"></div>
         <script src="./dist/vendor.js" type="text/javascript"></script>
         <script src="./dist/main.js" type="text/javascript"></script>

@@ -12,6 +12,7 @@ import AddProduct from './AddProduct';
 import AdminPanel from './AdminPanel';
 import Order from './Order';
 import Fillstate from './FillState';
+import ProductComponent from './ProductComponent';
 
 class App extends React.Component {
 
@@ -25,6 +26,7 @@ class App extends React.Component {
                 <Content pageName={this.props.pageName}>
                     <Switch>
                         <Route exact path="/" component={Warehouse} />
+                        <Route path="/product/:id" component={ProductComponent} />                        
                         <Route path="/order" component={Order} />
                         <Route path="/report" component={Report} />
                         <Route path="/add" component={AddProduct} />

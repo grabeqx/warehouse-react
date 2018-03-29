@@ -46,19 +46,20 @@ const SearchContainer = (props) => {
                             classes={{underline: classes.inputUnderline}}
                             onChange={props.onChangeSearch}
                             endAdornment = {<Search />}
+                            value={props.searchValue}
                         />
                     </FormControl>
                 </Grid>
                 <Grid item container xs={4}>
                     <Grid item xs={4}>
-                        <Filter fieldName="Podaj ilość" inputStartText="Od" filterEvent={props.filterStart}/>
+                        <Filter fieldName="Podaj ilość" inputStartText="Od" filterEvent={props.filterStart} value={props.filterStartValue}/>
                     </Grid>
                     <Grid item xs={4}>
-                        <Filter fieldName="Podaj ilość" inputStartText="Do" filterEvent={props.filterEnd}/>
+                        <Filter fieldName="Podaj ilość" inputStartText="Do" filterEvent={props.filterEnd} value={props.filterEndValue}/>
                     </Grid>
                     <Grid item xs={4} className={classes.buttonGrid}>
                         <Button color="primary" onClick={props.addFilters}>Filtruj</Button>
-                        <Button>Reset</Button>
+                        <Button onClick={props.reset}>Reset</Button>
                     </Grid>
                     
                 </Grid>

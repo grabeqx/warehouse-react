@@ -1,25 +1,20 @@
+import CONFIG from '../constants/config';
 import ACTIONS from '../constants/actions';
 
 const productReducer = (state = {
-    productPage: 0,
-    productStep: 100,
-    products: [],
-    query: ''
+    id: '',
+    name: '',
+    quantity: 0,
+    price: '0',
+    image: '#'
 }, action) => {
     switch(action.type) {
-
-        case ACTIONS.GET_PRODUCTS_SUCCESS:
+        
+        case ACTIONS.GET_PRODUCT_SUCCESS:
             return {
                 ...state,
-                products: [...state.products, ...action.payload]
+                ...action.payload
             }
-        case ACTIONS.SEARCH_PRODUCTS:
-            return {
-                ...state,
-                products: [],
-                query: action.payload.query
-            }
-
         default:
             return state;
     }

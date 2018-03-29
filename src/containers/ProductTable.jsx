@@ -5,7 +5,9 @@ import { withStyles } from "material-ui/styles";
 import Table, {TableBody, TableCell, TableHead, TableRow} from "material-ui/Table";
 import Paper from "material-ui/Paper";
 import Avatar from 'material-ui/Avatar';
-import ImageIcon from 'material-ui-icons/Image';
+import { Link } from 'react-router-dom';
+
+import CONFIG from '../constants/config';
 
 const styles = theme => ({
     root: {
@@ -37,14 +39,17 @@ const ProductsTable = props => {
             </TableHead>
             <TableBody>
             {props.tableRows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow key={row.id} className={row.quantity <= CONFIG.PRODUCT_ALERT_VALUE ? "danger" : null}>
                     <TableCell className={classes.narrowColumn}>{row.id}</TableCell>
                     <TableCell className={classes.narrowColumn}>
-                        <Avatar>
-                            <ImageIcon />
-                        </Avatar>
+                        <Avatar src={row.image}></Avatar>
                     </TableCell>
-                    <TableCell>{row.name}</TableCell>
+                    <TableCell>
+                        <Link to={"/product/" + row.id} style={{ textDecoration: 'none', color: '#000' }}>
+                            {row.name}
+                        </Link>
+                    </TableCell>
+
                     <TableCell>{row.price}</TableCell>
                     <TableCell>{row.quantity}</TableCell>
                 </TableRow>

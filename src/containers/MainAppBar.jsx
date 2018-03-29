@@ -9,6 +9,8 @@ import Button from 'material-ui/Button';
 import TextField from "material-ui/TextField";
 import Typography from "material-ui/Typography";
 import { MenuItem } from "material-ui/Menu";
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 
 import UserInfo from './UserInfo';
 
@@ -43,4 +45,10 @@ var MainAppBar = (props) => {
     )
 }
 
-export default withStyles(styles)(MainAppBar);
+function mapStateToProps(state) {
+    return {
+        title: state.appReducer.title
+    }
+}
+
+export default compose(withStyles(styles),connect(mapStateToProps, null))(MainAppBar);

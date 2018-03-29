@@ -11,7 +11,7 @@ import { FormControl } from "material-ui/Form";
 import { connect } from 'react-redux';
 
 import Search from "../containers/Search";
-import { searchProduct, filterProducts } from '../actions/actions';
+import { searchProduct, filterProducts, reset } from '../actions/actions';
 
 class SearchComponent extends React.Component {
     constructor(props) {
@@ -20,64 +20,76 @@ class SearchComponent extends React.Component {
         this.filterStart = this.filterStart.bind(this);
         this.filterEnd = this.filterEnd.bind(this);
         this.addFilters = this.addFilters.bind(this);
+        this.reset = this.reset.bind(this);
         this.state = {
-            filterStart: '',
-            filterEnd: ''
-        }
+            filterStart: this.props.filterStart,
+            filterEnd: this.props.filterEnd,
+            query: this.props.query,
+        };
     }
 
-    searchProduct(e) {
-        var value = e.target.value;
-        clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-            if(value.length >= 3 || value === '') {
-                this.props.searchProduct(this.props.productPage, this.props.productStep, value);
-            }
-        }, 500);
-    }
-
-    saveValueToState(props, val) {
+    componentWillReceiveProps(nextProps){
         this.setState({
-            [props]: val
+            query: nextProps.query,
+            filterStart: nextProps.filterStart,
+            filterEnd: nextProps.filterEnd            
         });
     }
 
+    searchProduct(e) {
+        this.setState({
+            query: e.target.value
+        }, () => {
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                if(this.state.query.length >= 3 || this.state.query === '') {
+                    this.props.searchProduct(this.state.query);
+                }
+            }, 500);
+        })
+    }
+
     filterStart(e) {
-        var value = e.target.value;
-        clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-            this.saveValueToState('filterStart', value);
-        }, 300);
+        this.setState({
+            filterStart: e.target.value
+        });
     }
 
     filterEnd(e) {
-        var value = e.target.value;
-        clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-            this.saveValueToState('filterEnd', value);
-        }, 300);
+        this.setState({
+            filterEnd: e.target.value
+        });
     }
 
     addFilters() {
         this.props.filterProducts(this.state.filterStart, this.state.filterEnd);
     }
 
+    reset() {
+        this.props.reset();
+    }
+
     render() {
         return <Search title="Wyszukaj produkt" 
             onChangeSearch={(e) => this.searchProduct(e)}
+            searchValue={this.state.query}
             filterStart={(e) => this.filterStart(e)}
+            filterStartValue={this.state.filterStart}
             filterEnd={(e) => this.filterEnd(e)}
+            filterEndValue={this.state.filterEnd}
             addFilters={this.addFilters}
+            reset={this.reset}
         />;
     }
 }
 
 function mapstateToProps(state) {
     return {
-        productPage: state.productReducer.productPage,
-        productStep: state.productReducer.productStep
+        query: state.productsReducer.query,
+        filterStart: state.productsReducer.filterStart,
+        filterEnd: state.productsReducer.filterEnd
     }
 }
 
 
-export default connect(mapstateToProps, { searchProduct, filterProducts })(SearchComponent);
+export default connect(mapstateToProps, { searchProduct, filterProducts, reset })(SearchComponent);

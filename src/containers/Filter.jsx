@@ -32,6 +32,7 @@ const Filter = (props) => (
             classes={{underline: props.classes.inputUnderline}}
             startAdornment = {<InputAdornment position="start">{props.inputStartText}</InputAdornment>}
             onChange={props.filterEvent}
+            value={props.value}
         />
     </FormControl>
 );

@@ -1,17 +1,23 @@
 import ACTIONS from '../constants/actions';
 
-
-export function getProducts(page, step, query) {
+export function changeTitle(title) {
     return {
-        type: ACTIONS.GET_PRODUCTS,
-        payload: {page, step, query}
+        type: ACTIONS.CHANGE_TITLE,
+        payload: {title}
     }
 }
 
-export function searchProduct(page, step, query) {
+export function getProducts(page, step, query, filterStart, filterEnd) {
+    return {
+        type: ACTIONS.GET_PRODUCTS,
+        payload: {page, step, query, filterStart, filterEnd}
+    }
+}
+
+export function searchProduct(query) {
     return {
         type: ACTIONS.SEARCH_PRODUCTS,
-        payload: {page, step, query}
+        payload: {query}
     }
 }
 
@@ -19,5 +25,18 @@ export function filterProducts(start, end) {
     return {
         type: ACTIONS.FILTER_PRODUCTS,
         payload: {start, end}
+    }
+}
+
+export function reset() {
+    return {
+        type: ACTIONS.RESET
+    }
+}
+
+export function getProduct(id) {
+    return {
+        type: ACTIONS.GET_PRODUCT,
+        payload: {id}
     }
 }

@@ -2,10 +2,16 @@ import axios from 'axios';
 
 const warehouseActions = {
 
-    getProducts: function(data) {
-        let limitFrom = data.page * data.step;
-        return axios.get(`/dbCall.php?action=getProducts&step=${data.step}&limitFrom=${limitFrom}&query=${data.query}`)
-            .then((response) => response.data)
+    getProducts: function({productPage, productStep, query, filterStart, filterEnd}) {
+        let limitFrom = productPage * productStep;
+        return axios.get(`/dbCall.php?action=getProducts&step=${productStep}&limitFrom=${limitFrom}&query=${query}&filterStart=${filterStart}&filterEnd=${filterEnd}`)
+            .then((response) => response.data);
+    },
+
+    getProduct: function(id) {
+        console.log(id);
+        return axios.get(`/dbCall.php?action=getProduct&id=${id}`)
+            .then((response) => response.data[0]);
     }
     
 }

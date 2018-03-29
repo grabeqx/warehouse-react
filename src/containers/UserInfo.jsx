@@ -36,8 +36,4 @@ function mapStateToProps(state) {
     }
 }
 
-UserInfo.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
 export default compose(withStyles(styles),connect(mapStateToProps, null))(UserInfo);

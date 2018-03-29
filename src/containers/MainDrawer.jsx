@@ -3,7 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Divider from "material-ui/Divider";
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import MENU from '../constants/menu';
 
