@@ -1,8 +1,94 @@
 body, html {
     margin: 0px;
     padding: 0px;
-    font-family: 'Roboto';
+    font-family: Roboto;
 }
 .danger {
     background: $dangerColor;
+}
+.Select-control {
+    display: flex;
+    align-items: center;
+    border: 0;
+    height: auto;
+    background: transparent;
+    &:hover {
+      box-shadow: none;
+    }
+}
+.Select-multi-value-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+.Select--multi .Select-input {
+    margin: 0;  
+}
+.Select.has-value.is-clearable.Select--single > .Select-control .Select-value {
+    padding: 0;
+}
+.Select-input {
+    display: inline-flex !important;
+    padding: 0;
+    height: auto;
+}
+.Select-input input {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: default;
+    display: inline-block;
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+    outline: 0;
+}
+.Select-placeholder .Select--single .Select-value {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+.Select-placeholder {
+    opacity: 0.42;
+}
+.Select-menu-outer {
+    background: white;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 
+                0px 2px 2px 0px rgba(0, 0, 0, 0.14), 
+                0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    max-height: 300px;
+}
+.Select.is-focused:not(.is-open) > .Select-control {
+    box-shadow: none;
+}
+.Select-menu {
+    overflow-y: auto;
+    max-height: 300px;
+}
+.Select-menu div {
+    box-sizing: content-box;
+}
+.Select-arrow-zone .Select-clear-zone {
+    cursor: pointer;
+    height: 21;
+    width: 21;
+    z-index: 1;
+}
+// Only for screen readers. We cant use display none.
+.Select-aria-only {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1;
+    width: 1;
+    margin: -1;
 }

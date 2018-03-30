@@ -30,7 +30,12 @@ const warehouseActions = {
                         return response.data;
                     })
             });
-    }
+    },
+
+    getOrderProduct: function(query) {
+        return axios.get(`/dbCall.php?action=getOrderProduct&query=${query}`)
+            .then((response) => response.data);
+    },
     
 }
 

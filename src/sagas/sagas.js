@@ -25,6 +25,12 @@ function* addProduct(action) {
     yield put({type: ACTIONS.ADD_PRODUCT_SUCCESS, payload: status});
 }
 
+function* getOrderedProducts(action) {
+    const products = yield call(warehouseActions.getOrderProduct, action.payload.query);
+    yield put({type: ACTIONS.GET_ORDERED_PRODUCTS_SUCCESS, payload: {products}});
+}
+
+
 function* warehouseSaga() {
     yield takeLatest(ACTIONS.GET_PRODUCTS, getProducts);
     yield takeLatest(ACTIONS.SEARCH_PRODUCTS, searchProducts);
@@ -32,6 +38,7 @@ function* warehouseSaga() {
     yield takeLatest(ACTIONS.RESET, getProducts);
     yield takeLatest(ACTIONS.GET_PRODUCT, getProduct);
     yield takeLatest(ACTIONS.ADD_PRODUCT, addProduct);
+    yield takeLatest(ACTIONS.GET_ORDERED_PRODUCTS, getOrderedProducts);
 }
 
 export default warehouseSaga;

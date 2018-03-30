@@ -47,3 +47,17 @@ export function addProduct(product) {
         payload: {product}
     }
 }
+
+export function selectValue(id) {
+    return {
+        type: ACTIONS.ADD_PRODUCT,
+        payload: {id}
+    }
+}
+
+export function getOrderedProducts(query) {
+    return {
+        type: ACTIONS.GET_ORDERED_PRODUCTS,
+        payload: {query}
+    }
+}
