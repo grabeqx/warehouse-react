@@ -40,3 +40,10 @@ export function getProduct(id) {
         payload: {id}
     }
 }
+
+export function addProduct(product) {
+    return {
+        type: ACTIONS.ADD_PRODUCT,
+        payload: {product}
+    }
+}

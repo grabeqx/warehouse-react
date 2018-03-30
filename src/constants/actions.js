@@ -8,6 +8,8 @@ const ACTIONS = {
     RESET: Symbol('RESET'),
     GET_PRODUCT: Symbol('GET_PRODUCT'),
     GET_PRODUCT_SUCCESS: Symbol('GET_PRODUCT_SUCCESS'),
+    ADD_PRODUCT: Symbol('ADD_PRODUCT'),
+    ADD_PRODUCT_SUCCESS: Symbol('ADD_PRODUCT_SUCCESS')    
 }
 
 export default ACTIONS;

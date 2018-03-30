@@ -4,10 +4,21 @@ import ACTIONS from '../constants/actions';
 const appReducer = (state = {
     userName: CONFIG.USER,
     userId: CONFIG.USER_ID,
-    title: ''
+    title: '',
+    addLoader: 0
 }, action) => {
     switch(action.type) {
         
+        case ACTIONS.ADD_PRODUCT:
+            return {
+                ...state,
+                addLoader: 1
+            }
+        case ACTIONS.ADD_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                addLoader: 0
+            }
         case ACTIONS.CHANGE_TITLE:
             return {
                 ...state,

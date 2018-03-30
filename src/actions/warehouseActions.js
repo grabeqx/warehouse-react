@@ -9,9 +9,27 @@ const warehouseActions = {
     },
 
     getProduct: function(id) {
-        console.log(id);
         return axios.get(`/dbCall.php?action=getProduct&id=${id}`)
             .then((response) => response.data[0]);
+    },
+
+    addProduct: function({image, name, price, quantity}) {
+        const url = '/upload.php';
+        const formData = new FormData();
+        formData.append('image',image)
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+        return axios.post(url, formData,config)
+            .then((response) => {
+                const image = response.data.length > 0 ? response.data : 'uploads/brak.jpg';
+                axios.post("/dbCall.php", {addProduct: true, name, price, quantity, image: image})
+                    .then((response) => {
+                        return response.data;
+                    })
+            });
     }
     
 }
