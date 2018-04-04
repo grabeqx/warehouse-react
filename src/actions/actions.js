@@ -61,3 +61,10 @@ export function getOrderedProducts(query) {
         payload: {query}
     }
 }
+
+export function saveOrder(products) {
+    return {
+        type: ACTIONS.SAVE_ORDER,
+        payload: {products}
+    }
+}

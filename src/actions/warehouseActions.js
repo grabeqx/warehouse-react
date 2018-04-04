@@ -36,6 +36,13 @@ const warehouseActions = {
         return axios.get(`/dbCall.php?action=getOrderProduct&query=${query}`)
             .then((response) => response.data);
     },
+
+    saveOrder: function(products) {
+        return axios.post("/dbCall.php", {saveOrder: true, products})
+            .then((response) => {
+                return response.data;
+            })
+    }
     
 }
 

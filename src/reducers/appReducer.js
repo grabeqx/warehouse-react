@@ -10,11 +10,13 @@ const appReducer = (state = {
     switch(action.type) {
         
         case ACTIONS.ADD_PRODUCT:
+        case ACTIONS.SAVE_ORDER:
             return {
                 ...state,
                 addLoader: 1
             }
         case ACTIONS.ADD_PRODUCT_SUCCESS:
+        case ACTIONS.SAVE_ORDER_SUCCESS:
             return {
                 ...state,
                 addLoader: 0

@@ -30,6 +30,11 @@ function* getOrderedProducts(action) {
     yield put({type: ACTIONS.GET_ORDERED_PRODUCTS_SUCCESS, payload: {products}});
 }
 
+function* saveOrder(action) {
+    const status = yield call(warehouseActions.saveOrder, action.payload.products);
+    yield put({type: ACTIONS.SAVE_ORDER_SUCCESS, payload: {status}});
+}
+
 
 function* warehouseSaga() {
     yield takeLatest(ACTIONS.GET_PRODUCTS, getProducts);
@@ -39,6 +44,7 @@ function* warehouseSaga() {
     yield takeLatest(ACTIONS.GET_PRODUCT, getProduct);
     yield takeLatest(ACTIONS.ADD_PRODUCT, addProduct);
     yield takeLatest(ACTIONS.GET_ORDERED_PRODUCTS, getOrderedProducts);
+    yield takeLatest(ACTIONS.SAVE_ORDER, saveOrder);
 }
 
 export default warehouseSaga;

@@ -48,10 +48,10 @@ const AddForm = (props) => (
                             <FormInput title="Zdjęcie" name="image" type="file" onChange={props.onChange} value={props.values.image}/>
                         </Grid>
                         <Grid item xs={6} className={props.classes.inputContainer}>
-                            <FormControl className={props.classes.formControl}>
+                            <FormControl>
                                 <Button variant="raised" color="primary" className={props.classes.button} type="submit">Dodaj</Button>
                             </FormControl>
-                            {props.showLoader ? <CircularProgress className={props.classes.progress} size={35}/> : null}
+                            {props.showLoader ? <CircularProgress size={35}/> : null}
                         </Grid>
                     </Grid>
                 </form>

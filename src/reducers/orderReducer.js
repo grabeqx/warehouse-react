@@ -3,7 +3,7 @@ import ACTIONS from '../constants/actions';
 
 const orderReducer = (state = {
     products: [],
-    query: 'tes'
+    query: ''
 }, action) => {
     switch(action.type) {
         

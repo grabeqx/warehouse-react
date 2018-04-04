@@ -6,6 +6,8 @@ import Table, {TableBody, TableCell, TableHead, TableRow} from "material-ui/Tabl
 import Paper from "material-ui/Paper";
 import Avatar from 'material-ui/Avatar';
 import { Link } from 'react-router-dom';
+import Input, {InputAdornment } from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form';
 
 import CONFIG from '../constants/config';
 
@@ -24,6 +26,9 @@ const styles = theme => ({
     },
     narrowColumn: {
         width: "5%"
+    },
+    mini: {
+        maxWidth: "50px"
     }
 });
 
@@ -45,13 +50,26 @@ const ProductsTable = props => {
                         <Avatar src={row.image}></Avatar>
                     </TableCell>
                     <TableCell>
-                        <Link to={"/product/" + row.id} style={{ textDecoration: 'none', color: '#000' }}>
+                        {!props.noLink ? <Link to={"/product/" + row.id} style={{ textDecoration: 'none', color: '#000' }}>
                             {row.name}
-                        </Link>
+                        </Link> : row.name}
                     </TableCell>
 
                     <TableCell>{row.price}</TableCell>
                     <TableCell>{row.quantity}</TableCell>
+                    {props.editable ? <TableCell className={classes.mini}>
+                        <Input
+                            id="adornment-weight"
+                            type="number"
+                            value={row.remove}
+                            onChange={(e) => props.defineProductOrder(e, row.id)}
+                            placeholder="0"
+                            endAdornment={<InputAdornment position="end">Sztuk</InputAdornment>}
+                            inputProps={{
+                                'aria-label': 'Wydano',
+                            }}
+                        />
+                    </TableCell> : null}
                 </TableRow>
             ))}
             </TableBody>

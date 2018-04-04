@@ -33,7 +33,7 @@ const OrderAutocomplate = (props) => {
         <TextField
             fullWidth
             value={props.multiLabel}
-            onChange={props.handleChange('multiLabel')}
+            onChange={props.handleChange}
             onKeyUp={props.loadNewData}
             placeholder="Podaj nazwy produktów"
             name="react-select-chip-label"
