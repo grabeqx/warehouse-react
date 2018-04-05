@@ -29,6 +29,17 @@ const styles = theme => ({
     },
     mini: {
         maxWidth: "50px"
+    },
+    removePadding: {
+        padding: "0px"
+    },
+    titleLink: {
+        textDecoration: "none", 
+        color: "#000",
+        padding: "4px 56px 4px 24px",
+        display: "flex",
+        height: "45px",
+        alignItems: "center"
     }
 });
 
@@ -51,8 +62,8 @@ const ProductsTable = props => {
                         <TableCell className={classes.narrowColumn}>
                             <Avatar src={row.image}></Avatar>
                         </TableCell>
-                        <TableCell>
-                            {!props.noLink ? <Link to={"/product/" + row.id} style={{ textDecoration: 'none', color: '#000' }}>
+                        <TableCell className={classes.removePadding}>
+                            {!props.noLink ? <Link to={"/product/" + row.id} className={classes.titleLink}>
                                 {row.name}
                             </Link> : row.name}
                         </TableCell>

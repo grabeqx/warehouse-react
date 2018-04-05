@@ -19,33 +19,38 @@ const styles = theme => ({
     }
 });
 
-const ProductViewTop = ({product, classes}) => (
-    <Grid container spacing={24}>
-        <Grid item xs={4}>
-            <Paper className={classes.imageContainer}>
-                <img src={product.image} className={classes.image}/>
-            </Paper>
-        </Grid>
-        <Grid item xs={8}>
-            <Paper className={classes.paper}>
-                <Typography variant="display2" gutterBottom>
-                    {product.name}
-                </Typography>
-                <Typography variant="headline" gutterBottom>
-                    Cena:
-                </Typography>
-                <Typography variant="subheading" gutterBottom>
-                    {product.price} zł
-                </Typography>
-                <Typography variant="headline" gutterBottom>
-                    Ilość:
-                </Typography>
-                <Typography variant="subheading" gutterBottom>
-                    {product.quantity}
-                </Typography>
-            </Paper>
-        </Grid>
-    </Grid>
-)
+const ProductViewTop = ({product, classes, animationType, visible}) => {
+    const Animation = animationType;
+    return (
+        <Animation in={visible}>
+            <Grid container spacing={24}>
+                <Grid item xs={4}>
+                    <Paper className={classes.imageContainer}>
+                        <img src={product.image} className={classes.image}/>
+                    </Paper>
+                </Grid>
+                <Grid item xs={8}>
+                    <Paper className={classes.paper}>
+                        <Typography variant="display2" gutterBottom>
+                            {product.name}
+                        </Typography>
+                        <Typography variant="headline" gutterBottom>
+                            Cena:
+                        </Typography>
+                        <Typography variant="subheading" gutterBottom>
+                            {product.price} zł
+                        </Typography>
+                        <Typography variant="headline" gutterBottom>
+                            Ilość:
+                        </Typography>
+                        <Typography variant="subheading" gutterBottom>
+                            {product.quantity}
+                        </Typography>
+                    </Paper>
+                </Grid>
+            </Grid>
+        </Animation>
+    )
+}
 
 export default withStyles(styles)(ProductViewTop);

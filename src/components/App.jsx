@@ -13,17 +13,23 @@ import AdminPanel from './AdminPanel';
 import Order from './Order';
 import FillStore from './FillStore';
 import ProductComponent from './ProductComponent';
-
 import Notify from './Notify';
+import { HTMLtoPDF } from '../utils/utils';
 
 class App extends React.Component {
     constructor(props) {
-        super(props);        
+        super(props);      
+        this.check = this.check.bind(this);  
+    }
+
+    check() {
+        HTMLtoPDF();
     }
 
     render() {
         return (
             <ConnectedRouter history={history}>
+            <div id="main-content">
                 <Content pageName={this.props.pageName}>
                     <Switch>
                         <Route exact path="/" component={Warehouse} />
@@ -35,7 +41,9 @@ class App extends React.Component {
                         <Route path="/admin" component={AdminPanel} />
                     </Switch>
                     <Notify />
+                    <button onClick={this.check}>tets</button>
                 </Content>
+            </div>
             </ConnectedRouter>
         )
     }

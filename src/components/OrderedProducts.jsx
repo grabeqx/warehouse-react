@@ -49,7 +49,9 @@ class OrderedProducts extends React.Component {
     }
 
     saveOrder() {
+        var productsIds = [];
         var products = this.state.products.map((product) => {
+            productsIds.push(product.id);
             return {
                 id: product.id,
                 name: product.name,
@@ -59,9 +61,8 @@ class OrderedProducts extends React.Component {
                 newQuantity: product.remove ? (parseInt(product.quantity) - parseInt(product.remove)) : product.add ? (parseInt(product.quantity) + parseInt(product.add)) : parseInt(product.quantity)
             }
         });
-        console.log(products);
         this.props.saveOrder(products);
-        this.props.addOrder(products, formatDate());
+        this.props.addOrder(products, formatDate(), productsIds.join('|'), this.state.type);
     }
 
     render() {

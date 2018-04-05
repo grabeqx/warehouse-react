@@ -82,9 +82,16 @@ export function closeNotify() {
     }
 }
 
-export function addOrder(products, date) {
+export function addOrder(products, date, productsIds, type) {
     return {
         type: ACTIONS.ADD_ORDER,
-        payload: {products, date}
+        payload: {products, date, productsIds, type}
+    }
+}
+
+export function getProductOrders(id) {
+    return {
+        type: ACTIONS.GET_PRODUCT_ORDERS,
+        payload: {id}
     }
 }

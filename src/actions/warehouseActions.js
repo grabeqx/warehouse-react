@@ -49,12 +49,19 @@ const warehouseActions = {
                 addOrder: true, 
                 userId: payload.userId, 
                 products: JSON.stringify(payload.products),
-                date: payload.date
+                date: payload.date,
+                productsIds: payload.productsIds,
+                type: payload.type
             })
             .then((response) => {
                 return 'Zapisano zlecenie'
             })
-    }
+    },
+
+    getProductOrders: function(id) {
+        return axios.get(`/dbCall.php?action=getProductOrders&productId=${id}`)
+            .then((response) => response.data);
+    },
     
 }
 
