@@ -10,15 +10,19 @@ const styles = theme => ({
         padding: theme.spacing.unit * 2,
         color: theme.palette.text.secondary,
     },
+    imageContainer: {
+        textAlign: 'center',
+    },
     image: {
-        maxWidth: "100%"
+        maxWidth: "100%",
+        marginBottom: "-4px"
     }
 });
 
 const ProductViewTop = ({product, classes}) => (
     <Grid container spacing={24}>
         <Grid item xs={4}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.imageContainer}>
                 <img src={product.image} className={classes.image}/>
             </Paper>
         </Grid>

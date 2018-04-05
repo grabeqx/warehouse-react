@@ -68,3 +68,23 @@ export function saveOrder(products) {
         payload: {products}
     }
 }
+
+export function notifyUser(text) {
+    return {
+        type: ACTIONS.NOTIFY_USER,
+        payload: {text}
+    }
+}
+
+export function closeNotify() {
+    return {
+        type: ACTIONS.CLOSE_NOTIFY
+    }
+}
+
+export function addOrder(products, date) {
+    return {
+        type: ACTIONS.ADD_ORDER,
+        payload: {products, date}
+    }
+}

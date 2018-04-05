@@ -22,7 +22,7 @@ function* getProduct(action) {
 
 function* addProduct(action) {
     const status = yield call(warehouseActions.addProduct, action.payload.product);
-    yield put({type: ACTIONS.ADD_PRODUCT_SUCCESS, payload: status});
+    yield put({type: ACTIONS.ADD_PRODUCT_SUCCESS, payload: {status}});
 }
 
 function* getOrderedProducts(action) {
@@ -35,6 +35,11 @@ function* saveOrder(action) {
     yield put({type: ACTIONS.SAVE_ORDER_SUCCESS, payload: {status}});
 }
 
+function* addOrder(action) {
+    const state = yield select();
+    const status = yield call(warehouseActions.addOrder, {...action.payload, userId: state.appReducer.userId});
+    yield put({type: ACTIONS.ADD_ORDER_SUCCESS, payload: status});
+}
 
 function* warehouseSaga() {
     yield takeLatest(ACTIONS.GET_PRODUCTS, getProducts);
@@ -45,6 +50,7 @@ function* warehouseSaga() {
     yield takeLatest(ACTIONS.ADD_PRODUCT, addProduct);
     yield takeLatest(ACTIONS.GET_ORDERED_PRODUCTS, getOrderedProducts);
     yield takeLatest(ACTIONS.SAVE_ORDER, saveOrder);
+    yield takeLatest(ACTIONS.ADD_ORDER, addOrder);
 }
 
 export default warehouseSaga;

@@ -4,7 +4,8 @@ import Button from 'material-ui/Button';
 
 import ProductTable from '../containers/ProductTable';
 import OrderButton from '../containers/OrderButton';
-import { saveOrder } from '../actions/actions';
+import { saveOrder, addOrder } from '../actions/actions';
+import { formatDate } from '../utils/utils.js';
 
 class OrderedProducts extends React.Component {
     constructor(props) {
@@ -12,7 +13,8 @@ class OrderedProducts extends React.Component {
         this.state = {
             tableTitles: ['Id','Zdjęcie', 'Nazwa', 'Cena', 'Ilość', 'Wydano'],
             products: this.props.products,
-            loader: this.props.addLoader
+            loader: this.props.addLoader,
+            type: this.props.type
         };
         this.defineProductOrder = this.defineProductOrder.bind(this);
         this.saveOrder = this.saveOrder.bind(this);
@@ -23,8 +25,10 @@ class OrderedProducts extends React.Component {
             var key = this.state.products.findIndex((p) => p.id == product.id);
             if(key >= 0) {
                 product.remove = this.state.products[key].remove !== '' ? this.state.products[key].remove : '';
+                product.add = this.state.products[key].add !== '' ? this.state.products[key].add : '';
             } else {
                 product.remove = '';
+                product.add = '';
             }
             return product;
         });
@@ -39,7 +43,7 @@ class OrderedProducts extends React.Component {
         var stateCopy = Object.assign({}, this.state);
         stateCopy.products = stateCopy.products.slice();
         stateCopy.products[key] = Object.assign({}, stateCopy.products[key]);
-        stateCopy.products[key].remove = e.target.value;
+        this.state.type === 'fill' ? stateCopy.products[key].add = e.target.value : stateCopy.products[key].remove = e.target.value;
         this.setState(stateCopy);
     }
 
@@ -47,12 +51,16 @@ class OrderedProducts extends React.Component {
         var products = this.state.products.map((product) => {
             return {
                 id: product.id,
+                name: product.name,
+                quantity: product.quantity,
                 remove: product.remove ? product.remove : "0",
-                newQuantity: product.remove ? (parseInt(product.quantity) - parseInt(product.remove)) : parseInt(product.quantity)
+                add: product.add ? product.add : "0",
+                newQuantity: product.remove ? (parseInt(product.quantity) - parseInt(product.remove)) : product.add ? (parseInt(product.quantity) + parseInt(product.add)) : parseInt(product.quantity)
             }
         });
+        console.log(products);
         this.props.saveOrder(products);
-        this.props.clearSelect();
+        this.props.addOrder(products, formatDate());
     }
 
     render() {
@@ -65,6 +73,7 @@ class OrderedProducts extends React.Component {
                         noLink={true}
                         editable={true}
                         defineProductOrder={this.defineProductOrder}
+                        type={this.state.type}
                     /> 
                     <OrderButton 
                         showLoader={this.state.loader}
@@ -83,4 +92,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { saveOrder })(OrderedProducts);
+export default connect(mapStateToProps, { saveOrder, addOrder })(OrderedProducts);

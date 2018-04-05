@@ -61,7 +61,7 @@ const ProductsTable = props => {
                         <Input
                             id="adornment-weight"
                             type="number"
-                            value={row.remove}
+                            value={props.type === 'fill' ? row.add :row.remove}
                             onChange={(e) => props.defineProductOrder(e, row.id)}
                             placeholder="0"
                             endAdornment={<InputAdornment position="end">Sztuk</InputAdornment>}

@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
 import { changeTitle } from '../actions/actions';
+import UpdateStore from './UpdateStore';
 
 class FillState extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            type: 'fill'
+        }
     }
 
     componentDidMount() {
@@ -15,7 +19,9 @@ class FillState extends React.Component {
 
     render() {
         return (
-            <div>FillState</div>
+            <UpdateStore 
+                type={this.state.type}
+            />
         )
     }
 }

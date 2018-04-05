@@ -11,11 +11,12 @@ import Report from './Report';
 import AddProduct from './AddProduct';
 import AdminPanel from './AdminPanel';
 import Order from './Order';
-import Fillstate from './FillState';
+import FillStore from './FillStore';
 import ProductComponent from './ProductComponent';
 
-class App extends React.Component {
+import Notify from './Notify';
 
+class App extends React.Component {
     constructor(props) {
         super(props);        
     }
@@ -30,9 +31,10 @@ class App extends React.Component {
                         <Route path="/order" component={Order} />
                         <Route path="/report" component={Report} />
                         <Route path="/add" component={AddProduct} />
-                        <Route path="/fill" component={Fillstate} />
+                        <Route path="/fill" component={FillStore} />
                         <Route path="/admin" component={AdminPanel} />
                     </Switch>
+                    <Notify />
                 </Content>
             </ConnectedRouter>
         )

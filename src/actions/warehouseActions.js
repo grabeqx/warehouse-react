@@ -25,9 +25,9 @@ const warehouseActions = {
         return axios.post(url, formData,config)
             .then((response) => {
                 const image = response.data.length > 0 ? response.data : 'uploads/brak.jpg';
-                axios.post("/dbCall.php", {addProduct: true, name, price, quantity, image: image})
+                return axios.post("/dbCall.php", {addProduct: true, name, price, quantity, image: image})
                     .then((response) => {
-                        return response.data;
+                        return 'Dodano produkt';
                     })
             });
     },
@@ -40,7 +40,19 @@ const warehouseActions = {
     saveOrder: function(products) {
         return axios.post("/dbCall.php", {saveOrder: true, products})
             .then((response) => {
-                return response.data;
+                return 'Zapisano zlecenie'
+            })
+    },
+
+    addOrder: function(payload) {
+        return axios.post("/dbCall.php", {
+                addOrder: true, 
+                userId: payload.userId, 
+                products: JSON.stringify(payload.products),
+                date: payload.date
+            })
+            .then((response) => {
+                return 'Zapisano zlecenie'
             })
     }
     
