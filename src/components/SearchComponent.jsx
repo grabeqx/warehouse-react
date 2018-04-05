@@ -9,6 +9,7 @@ import purple from "material-ui/colors/purple";
 import TextField from "material-ui/TextField";
 import { FormControl } from "material-ui/Form";
 import { connect } from 'react-redux';
+import Fade from 'material-ui/transitions/Fade';
 
 import Search from "../containers/Search";
 import { searchProduct, filterProducts, reset } from '../actions/actions';
@@ -79,6 +80,8 @@ class SearchComponent extends React.Component {
             filterEndValue={this.state.filterEnd}
             addFilters={this.addFilters}
             reset={this.reset}
+            animationType={Fade}
+            visible={true}
         />;
     }
 }

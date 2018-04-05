@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Fade from 'material-ui/transitions/Fade';
 
 import ProductTable from '../containers/ProductTable';
 import { getProducts } from '../actions/actions';
@@ -9,7 +10,8 @@ class ProductTableComponent extends React.Component {
         super(props);
         this.state = {
             tableTitles: ['Id','Zdjęcie', 'Nazwa', 'Cena', 'Ilość'],
-            tableRows: this.props.products
+            tableRows: this.props.products,
+            visible: true
         };
     }
 
@@ -34,6 +36,8 @@ class ProductTableComponent extends React.Component {
             <ProductTable 
                 tableTitles={this.state.tableTitles}
                 tableRows={this.state.tableRows}
+                visible={this.state.visible}
+                animationType={Fade}
             />
         )
     }

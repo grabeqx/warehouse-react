@@ -34,47 +34,50 @@ const styles = theme => ({
 
 const ProductsTable = props => {
   const { classes } = props;
+  const Animation = props.animationType;
   return (
-    <Paper className={classes.root} elevation={1}>
-        <Table className={classes.table}>
-            <TableHead>
-                <TableRow>
-                    {props.tableTitles.map((title, index) => <TableCell className={classes.head} key={index}>{title}</TableCell>)}
-                </TableRow>
-            </TableHead>
-            <TableBody>
-            {props.tableRows.map((row) => (
-                <TableRow key={row.id} className={row.quantity <= CONFIG.PRODUCT_ALERT_VALUE ? "danger" : null}>
-                    <TableCell className={classes.narrowColumn}>{row.id}</TableCell>
-                    <TableCell className={classes.narrowColumn}>
-                        <Avatar src={row.image}></Avatar>
-                    </TableCell>
-                    <TableCell>
-                        {!props.noLink ? <Link to={"/product/" + row.id} style={{ textDecoration: 'none', color: '#000' }}>
-                            {row.name}
-                        </Link> : row.name}
-                    </TableCell>
+    <Animation in={props.visible}>
+        <Paper className={classes.root} elevation={1}>
+            <Table className={classes.table}>
+                <TableHead>
+                    <TableRow>
+                        {props.tableTitles.map((title, index) => <TableCell className={classes.head} key={index}>{title}</TableCell>)}
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                {props.tableRows.map((row) => (
+                    <TableRow key={row.id} className={row.quantity <= CONFIG.PRODUCT_ALERT_VALUE ? "danger" : null}>
+                        <TableCell className={classes.narrowColumn}>{row.id}</TableCell>
+                        <TableCell className={classes.narrowColumn}>
+                            <Avatar src={row.image}></Avatar>
+                        </TableCell>
+                        <TableCell>
+                            {!props.noLink ? <Link to={"/product/" + row.id} style={{ textDecoration: 'none', color: '#000' }}>
+                                {row.name}
+                            </Link> : row.name}
+                        </TableCell>
 
-                    <TableCell>{row.price}</TableCell>
-                    <TableCell>{row.quantity}</TableCell>
-                    {props.editable ? <TableCell className={classes.mini}>
-                        <Input
-                            id="adornment-weight"
-                            type="number"
-                            value={props.type === 'fill' ? row.add :row.remove}
-                            onChange={(e) => props.defineProductOrder(e, row.id)}
-                            placeholder="0"
-                            endAdornment={<InputAdornment position="end">Sztuk</InputAdornment>}
-                            inputProps={{
-                                'aria-label': 'Wydano',
-                            }}
-                        />
-                    </TableCell> : null}
-                </TableRow>
-            ))}
-            </TableBody>
-        </Table>
-    </Paper>
+                        <TableCell>{row.price}</TableCell>
+                        <TableCell>{row.quantity}</TableCell>
+                        {props.editable ? <TableCell className={classes.mini}>
+                            <Input
+                                id="adornment-weight"
+                                type="number"
+                                value={props.type === 'fill' ? row.add :row.remove}
+                                onChange={(e) => props.defineProductOrder(e, row.id)}
+                                placeholder="0"
+                                endAdornment={<InputAdornment position="end">Sztuk</InputAdornment>}
+                                inputProps={{
+                                    'aria-label': 'Wydano',
+                                }}
+                            />
+                        </TableCell> : null}
+                    </TableRow>
+                ))}
+                </TableBody>
+            </Table>
+        </Paper>
+    </Animation>
   );
 };
 

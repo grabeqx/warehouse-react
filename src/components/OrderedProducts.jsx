@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
+import Grow from 'material-ui/transitions/Grow';
 
 import ProductTable from '../containers/ProductTable';
 import OrderButton from '../containers/OrderButton';
@@ -66,21 +67,22 @@ class OrderedProducts extends React.Component {
     render() {
         return (
             <React.Fragment>
-                {this.state.products.length > 0 ? <React.Fragment>
-                    <ProductTable 
-                        tableTitles={this.state.tableTitles}
-                        tableRows={this.state.products}
-                        noLink={true}
-                        editable={true}
-                        defineProductOrder={this.defineProductOrder}
-                        type={this.state.type}
-                    /> 
-                    <OrderButton 
-                        showLoader={this.state.loader}
-                        saveOrder={this.saveOrder}
-                    />
-                </React.Fragment>
-                : null}
+                <ProductTable 
+                    tableTitles={this.state.tableTitles}
+                    tableRows={this.state.products}
+                    noLink={true}
+                    editable={true}
+                    defineProductOrder={this.defineProductOrder}
+                    type={this.state.type}
+                    visible={this.state.products.length > 0}
+                    animationType={Grow}
+                /> 
+                <OrderButton 
+                    showLoader={this.state.loader}
+                    saveOrder={this.saveOrder}
+                    visible={this.state.products.length > 0}
+                    animationType={Grow}
+                />
             </React.Fragment>
         )
     }

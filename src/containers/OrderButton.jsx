@@ -20,13 +20,16 @@ const styles = theme => ({
 
 const OrderButton = (props) => {
     const { classes } = props;
+    const Animation = props.animationType;
     return (
-        <div className={classes.root}>
-            {props.showLoader ? <CircularProgress className={props.classes.progress} size={35}/> : null}
-            <FormControl>
-                <Button variant="raised" color="primary" className={props.classes.button} onClick={props.saveOrder}>Zapisz</Button>
-            </FormControl>
-        </div>
+        <Animation in={props.visible}>
+            <div className={classes.root}>
+                {props.showLoader ? <CircularProgress className={props.classes.progress} size={35}/> : null}
+                <FormControl>
+                    <Button variant="raised" color="primary" className={props.classes.button} onClick={props.saveOrder}>Zapisz</Button>
+                </FormControl>
+            </div>
+        </Animation>
     );
 }
 

@@ -28,36 +28,41 @@ const styles = theme => ({
     }
 });
 
-const AddForm = (props) => (
-    <Grid container spacing={24}>
-        <Grid item xs={5}>
-            <Paper className={props.classes.paper}>
-                <Typography variant="headline" gutterBottom>Wypełnij dane o produkcie</Typography>
-                <form onSubmit={props.submitForm}>
-                    <Grid container spacing={24}>
-                        <Grid item xs={12} className={props.classes.inputContainer}>
-                            <FormInput title="Nazwa" name="name" type="text" onChange={props.onChange} value={props.values.name}/>
-                        </Grid>
-                        <Grid item xs={12} className={props.classes.inputContainer}>
-                            <FormInput title="Cena" name="price" type="text" onChange={props.onChange} value={props.values.price}/>
-                        </Grid>
-                        <Grid item xs={12} className={props.classes.inputContainer}>
-                            <FormInput title="Ilosć" name="quantity" type="number" onChange={props.onChange} value={props.values.quantity}/>
-                        </Grid>
-                        <Grid item xs={12} className={props.classes.inputContainer}>
-                            <FormInput title="Zdjęcie" name="image" type="file" onChange={props.onChange} value={props.values.image}/>
-                        </Grid>
-                        <Grid item xs={6} className={props.classes.inputContainer}>
-                            <FormControl>
-                                <Button variant="raised" color="primary" className={props.classes.button} type="submit">Dodaj</Button>
-                            </FormControl>
-                            {props.showLoader ? <CircularProgress size={35}/> : null}
-                        </Grid>
-                    </Grid>
-                </form>
-            </Paper>
-        </Grid>
-    </Grid>
-);
+const AddForm = (props) => {
+    const Animation = props.animationType;
+    return (
+        <Animation in={props.visible}>
+            <Grid container spacing={24}>
+                <Grid item xs={5}>
+                    <Paper className={props.classes.paper}>
+                        <Typography variant="headline" gutterBottom>Wypełnij dane o produkcie</Typography>
+                        <form onSubmit={props.submitForm}>
+                            <Grid container spacing={24}>
+                                <Grid item xs={12} className={props.classes.inputContainer}>
+                                    <FormInput title="Nazwa" name="name" type="text" onChange={props.onChange} value={props.values.name}/>
+                                </Grid>
+                                <Grid item xs={12} className={props.classes.inputContainer}>
+                                    <FormInput title="Cena" name="price" type="text" onChange={props.onChange} value={props.values.price}/>
+                                </Grid>
+                                <Grid item xs={12} className={props.classes.inputContainer}>
+                                    <FormInput title="Ilosć" name="quantity" type="number" onChange={props.onChange} value={props.values.quantity}/>
+                                </Grid>
+                                <Grid item xs={12} className={props.classes.inputContainer}>
+                                    <FormInput title="Zdjęcie" name="image" type="file" onChange={props.onChange} value={props.values.image}/>
+                                </Grid>
+                                <Grid item xs={6} className={props.classes.inputContainer}>
+                                    <FormControl>
+                                        <Button variant="raised" color="primary" className={props.classes.button} type="submit">Dodaj</Button>
+                                    </FormControl>
+                                    {props.showLoader ? <CircularProgress size={35}/> : null}
+                                </Grid>
+                            </Grid>
+                        </form>
+                    </Paper>
+                </Grid>
+            </Grid>
+        </Animation>
+    )
+}
 
 export default withStyles(styles)(AddForm);

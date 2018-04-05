@@ -31,8 +31,9 @@ const styles = theme => ({
 
 const SearchContainer = (props) => {
     const { classes } = props;
+    const Animation = props.animationType;
     return (
-        <div>
+        <Animation in={props.visible}>
             <Grid container spacing={24}>
                 <Grid item xs={8}>
                     <FormControl className={classes.formControl}>
@@ -64,7 +65,7 @@ const SearchContainer = (props) => {
                     
                 </Grid>
             </Grid>
-        </div>
+        </Animation>
     )
 }
 

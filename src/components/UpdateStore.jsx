@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Fade from 'material-ui/transitions/Fade';
 
 import { getOrderedProducts } from '../actions/actions';
 import OrderAutocomplate from '../containers/OrderAutocomplate';
@@ -87,6 +88,8 @@ class UpdateStore extends React.Component {
                     selectValue={this.selectValue}
                     suggestions={this.state.products}
                     loadNewData={this.loadNewData}
+                    visible={true}
+                    animationType={Fade}
                 />
                 <OrderedProducts 
                     products={this.state.selectedProducts}

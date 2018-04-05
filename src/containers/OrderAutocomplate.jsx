@@ -18,7 +18,7 @@ import SelectWrapped from './SelectWrapped';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 250,
+    height: 100,
   }
 });
 
@@ -28,32 +28,33 @@ const OrderAutocomplate = (props) => {
         label: suggestion.name,
     }));
     const { classes } = props;
+    const Animation = props.animationType;
     return (
-        <div className={classes.root}>
-        <TextField
-            fullWidth
-            value={props.multiLabel}
-            onChange={props.handleChange}
-            onKeyUp={props.loadNewData}
-            placeholder="Podaj nazwy produktów"
-            name="react-select-chip-label"
-            label="Produkty"
-            InputLabelProps={{
-                shrink: true,
-            }}
-            InputProps={{
-                inputComponent: SelectWrapped,
-                inputProps: {
-                    classes,
-                    multi: true,
-                    instanceId: 'react-select-chip-label',
-                    id: 'react-select-chip-label',
-                    simpleValue: true,
-                    options: suggestions
-                },
-            }}
-        />
-        </div>
+        <Animation in={props.visible} className={classes.root}>
+            <TextField
+                fullWidth
+                value={props.multiLabel}
+                onChange={props.handleChange}
+                onKeyUp={props.loadNewData}
+                placeholder="Podaj nazwy produktów"
+                name="react-select-chip-label"
+                label="Produkty"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                InputProps={{
+                    inputComponent: SelectWrapped,
+                    inputProps: {
+                        classes,
+                        multi: true,
+                        instanceId: 'react-select-chip-label',
+                        id: 'react-select-chip-label',
+                        simpleValue: true,
+                        options: suggestions
+                    },
+                }}
+            />
+        </Animation>
     )
 }
 

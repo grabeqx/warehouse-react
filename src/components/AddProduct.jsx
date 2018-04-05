@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import Fade from 'material-ui/transitions/Fade';
 
 import { changeTitle, addProduct } from '../actions/actions';
 import AddForm from '../containers/AddForm';
@@ -57,6 +58,8 @@ class AddProduct extends React.Component {
                 onChange={(e) => this.onChange(e)}
                 values={this.state}
                 showLoader={this.state.loader}
+                animationType={Fade}
+                visible={true}
             />
         )
     }
