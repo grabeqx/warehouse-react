@@ -5,7 +5,7 @@ import Grow from 'material-ui/transitions/Grow';
 
 import ProductTable from '../containers/ProductTable';
 import OrderButton from '../containers/OrderButton';
-import { saveOrder, addOrder } from '../actions/actions';
+import { saveOrder, addOrder, notifyUser } from '../actions/actions';
 import { formatDate } from '../utils/utils.js';
 
 class OrderedProducts extends React.Component {
@@ -15,7 +15,8 @@ class OrderedProducts extends React.Component {
             tableTitles: ['Id','Zdjęcie', 'Nazwa', 'Cena', 'Ilość', 'Wydano'],
             products: this.props.products,
             loader: this.props.addLoader,
-            type: this.props.type
+            type: this.props.type,
+            productAlert: this.props.productAlert
         };
         this.defineProductOrder = this.defineProductOrder.bind(this);
         this.saveOrder = this.saveOrder.bind(this);
@@ -35,7 +36,8 @@ class OrderedProducts extends React.Component {
         });
         this.setState({
             products: products,
-            loader: nextProps.addLoader
+            loader: nextProps.addLoader,
+            productAlert: nextProps.productAlert
         });
     }
 
@@ -50,8 +52,12 @@ class OrderedProducts extends React.Component {
 
     saveOrder() {
         var productsIds = [];
+        var toLow = false;
         var products = this.state.products.map((product) => {
             productsIds.push(product.id);
+            if(parseInt(product.quantity) - parseInt(product.remove) < 0) {
+                toLow = true;
+            }
             return {
                 id: product.id,
                 name: product.name,
@@ -61,8 +67,12 @@ class OrderedProducts extends React.Component {
                 newQuantity: product.remove ? (parseInt(product.quantity) - parseInt(product.remove)) : product.add ? (parseInt(product.quantity) + parseInt(product.add)) : parseInt(product.quantity)
             }
         });
-        this.props.saveOrder(products);
-        this.props.addOrder(products, formatDate(), productsIds.join('|'), this.state.type);
+        if(toLow) {
+            this.props.notifyUser('Za dużo do wydania');
+        } else {
+            this.props.saveOrder(products);
+            this.props.addOrder(products, formatDate(), productsIds.join('|'), this.state.type);
+        }
     }
 
     render() {
@@ -77,6 +87,7 @@ class OrderedProducts extends React.Component {
                     type={this.state.type}
                     visible={this.state.products.length > 0}
                     animationType={Grow}
+                    productAlert={this.state.productAlert}
                 /> 
                 <OrderButton 
                     showLoader={this.state.loader}
@@ -91,8 +102,9 @@ class OrderedProducts extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        addLoader: state.appReducer.addLoader
+        addLoader: state.appReducer.addLoader,
+        productAlert: state.productsReducer.productAlert
     }
 }
 
-export default connect(mapStateToProps, { saveOrder, addOrder })(OrderedProducts);
+export default connect(mapStateToProps, { saveOrder, addOrder, notifyUser })(OrderedProducts);

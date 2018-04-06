@@ -39,7 +39,7 @@ var MainAppBar = (props) => {
                 {props.title}
                 </Typography>
                 <UserInfo />
-                <Button color="inherit" href="logout.php">Wyloguj się</Button>
+                <Button color="inherit" href="/logout.php">Wyloguj się</Button>
             </Toolbar>
         </AppBar>
     )

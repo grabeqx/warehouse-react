@@ -6,6 +6,9 @@ body, html {
 .danger {
     background: $dangerColor;
 }
+.empty {
+    background: $emptyColor;
+}
 .Select-control {
     display: flex;
     align-items: center;
@@ -83,7 +86,6 @@ body, html {
     width: 21;
     z-index: 1;
 }
-// Only for screen readers. We cant use display none.
 .Select-aria-only {
     position: absolute;
     overflow: hidden;

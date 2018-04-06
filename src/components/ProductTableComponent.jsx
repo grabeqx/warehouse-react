@@ -11,7 +11,8 @@ class ProductTableComponent extends React.Component {
         this.state = {
             tableTitles: ['Id','Zdjęcie', 'Nazwa', 'Cena', 'Ilość'],
             tableRows: this.props.products,
-            visible: true
+            visible: true,
+            productAlert: this.props.productAlert
         };
     }
 
@@ -27,7 +28,8 @@ class ProductTableComponent extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            tableRows: nextProps.products
+            tableRows: nextProps.products,
+            productAlert: this.props.productAlert
         });
     }
 
@@ -38,6 +40,7 @@ class ProductTableComponent extends React.Component {
                 tableRows={this.state.tableRows}
                 visible={this.state.visible}
                 animationType={Fade}
+                productAlert={this.state.productAlert}
             />
         )
     }
@@ -51,7 +54,8 @@ function mapstateToProps(state) {
         productStep: state.productsReducer.productStep,
         query: state.productsReducer.query,
         filterStart: state.productsReducer.filterStart,
-        filterEnd: state.productsReducer.filterEnd
+        filterEnd: state.productsReducer.filterEnd,
+        productAlert: state.productsReducer.productAlert
     }
 }
 

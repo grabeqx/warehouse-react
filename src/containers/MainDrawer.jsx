@@ -4,6 +4,8 @@ import Drawer from 'material-ui/Drawer';
 import Divider from "material-ui/Divider";
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 
 import MENU from '../constants/menu';
 
@@ -20,6 +22,7 @@ const styles = theme => ({
 
 var MainDraver = (props) => {
     const { classes } = props;
+    console.log(props);
     return ( 
         <Drawer
             variant="permanent"
@@ -35,17 +38,24 @@ var MainDraver = (props) => {
                     let MenuIcon = menuItem.icon;
                     return (
                         <Link to={menuItem.url} key={index} style={{ textDecoration: 'none' }}>
-                            <ListItem button>
+                            {(menuItem.name === 'Admin' && !props.isAdmin) ? null :
+                             <ListItem button>
                                 <ListItemIcon>
                                     <MenuIcon />
                                 </ListItemIcon>
                                 <ListItemText primary={menuItem.name} />
-                            </ListItem>
+                            </ListItem> }
                         </Link>
                         )
                 })}
             </List>
         </Drawer> )
 };
+
+function mapStateToProps(state) {
+    return {
+        isAdmin: state.appReducer.isAdmin
+    }
+}
   
-export default withStyles(styles)(MainDraver);
+export default compose(withStyles(styles),connect(mapStateToProps, null))(MainDraver);

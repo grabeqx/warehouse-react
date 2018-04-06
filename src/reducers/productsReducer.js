@@ -2,11 +2,12 @@ import ACTIONS from '../constants/actions';
 
 const productsReducer = (state = {
     productPage: 0,
-    productStep: 100,
+    productStep: 9999,
     products: [],
     query: '',
     filterStart: '',
-    filterEnd: ''
+    filterEnd: '',
+    productAlert: 50
 }, action) => {
     switch(action.type) {
 
@@ -40,6 +41,24 @@ const productsReducer = (state = {
                 filterStart: '',
                 filterEnd: ''
             }
+        case ACTIONS.CLEAR_TABLE: {
+            return {
+                ...state,
+                products: []
+            }
+        }
+        case ACTIONS.GET_CONFIG_SUCCESS: {
+            return {
+                ...state,
+                productAlert: action.payload.config.productAlert
+            }
+        }
+        case ACTIONS.SAVE_CONFIG: {
+            return {
+                ...state,
+                productAlert: action.payload.config.productAlert
+            }
+        }
         default:
             return state;
     }

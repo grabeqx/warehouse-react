@@ -14,16 +14,16 @@ import Order from './Order';
 import FillStore from './FillStore';
 import ProductComponent from './ProductComponent';
 import Notify from './Notify';
-import { HTMLtoPDF } from '../utils/utils';
+
+import { getConfig } from '../actions/actions';
 
 class App extends React.Component {
     constructor(props) {
-        super(props);      
-        this.check = this.check.bind(this);  
+        super(props);       
     }
 
-    check() {
-        HTMLtoPDF();
+    componentDidMount() {
+        this.props.getConfig();
     }
 
     render() {
@@ -41,7 +41,6 @@ class App extends React.Component {
                         <Route path="/admin" component={AdminPanel} />
                     </Switch>
                     <Notify />
-                    <button onClick={this.check}>tets</button>
                 </Content>
             </div>
             </ConnectedRouter>
@@ -57,4 +56,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, { getConfig })(App);

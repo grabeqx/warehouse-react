@@ -57,7 +57,7 @@ const ProductsTable = props => {
                 </TableHead>
                 <TableBody>
                 {props.tableRows.map((row) => (
-                    <TableRow key={row.id} className={row.quantity <= CONFIG.PRODUCT_ALERT_VALUE ? "danger" : null}>
+                    <TableRow key={row.id} className={row.quantity == 0 ? "empty" : row.quantity <= props.productAlert ? "danger": null}>
                         <TableCell className={classes.narrowColumn}>{row.id}</TableCell>
                         <TableCell className={classes.narrowColumn}>
                             <Avatar src={row.image}></Avatar>

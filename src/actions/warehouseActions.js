@@ -62,6 +62,80 @@ const warehouseActions = {
         return axios.get(`/dbCall.php?action=getProductOrders&productId=${id}`)
             .then((response) => response.data);
     },
+
+    getDayOrders: function() {
+        return axios.get(`/dbCall.php?action=getDayOrders`)
+            .then((response) => response.data);
+    },
+
+    getWeekOrders: function() {
+        return axios.get(`/dbCall.php?action=getWeekOrders`)
+            .then((response) => response.data);
+    },
+
+    getMonthOrders: function() {
+        return axios.get(`/dbCall.php?action=getMonthOrders`)
+            .then((response) => response.data);
+    },
+
+    getProductsState: function() {
+        return axios.get(`/dbCall.php?action=getProductsState`)
+            .then((response) => response.data);
+    },
+
+    getConfig: function() {
+        return axios.get(`/dbCall.php?action=getConfig`)
+            .then((response) => response.data[0]);
+    },
+
+    getUsers: function() {
+        return axios.get(`/dbCall.php?action=getUsers`)
+            .then((response) => response.data);
+    },
+
+    addUser: function(payload) {
+        return axios.post("/dbCall.php", {
+                addUser: true, 
+                username: payload.username,
+                email: payload.email,
+                password: payload.password,
+                isAdmin: parseInt(payload.isAdmin)
+            })
+            .then((response) => {
+                return 'Dodano użytkownika'
+            })
+    },
+
+    removeUser: function(payload) {
+        return axios.post("/dbCall.php", {
+                removeUser: true,
+                userId: payload
+            })
+            .then((response) => {
+                return 'Usunięto użytkownika'
+            })
+    },
+
+    saveConfig: function(payload) {
+        return axios.post("/dbCall.php", {
+                saveConfig: true,
+                productAlert: payload.productAlert
+            })
+            .then((response) => {
+                return 'Zmodyfikowano'
+            })
+    },
+
+    removeProduct: function(payload) {
+        return axios.post("/dbCall.php", {
+                removeProduct: true,
+                productId: payload.productId
+            })
+            .then((response) => {
+                console.log(response.data);
+                return 'Usunięto'
+            })
+    }
     
 }
 

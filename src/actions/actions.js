@@ -69,10 +69,10 @@ export function saveOrder(products) {
     }
 }
 
-export function notifyUser(text) {
+export function notifyUser(status) {
     return {
         type: ACTIONS.NOTIFY_USER,
-        payload: {text}
+        payload: {status}
     }
 }
 
@@ -93,5 +93,75 @@ export function getProductOrders(id) {
     return {
         type: ACTIONS.GET_PRODUCT_ORDERS,
         payload: {id}
+    }
+}
+
+export function getDayOrders() {
+    return {
+        type: ACTIONS.GET_DAY_ORDERS
+    }
+}
+
+export function getWeekOrders() {
+    return {
+        type: ACTIONS.GET_WEEK_ORDERS
+    }
+}
+
+export function getMonthOrders() {
+    return {
+        type: ACTIONS.GET_MONTH_ORDERS
+    }
+}
+
+export function getProductsState() {
+    return {
+        type: ACTIONS.GET_PRODUCTS_STATE
+    }
+}
+
+export function clearTable() {
+    return {
+        type: ACTIONS.CLEAR_TABLE
+    }
+}
+
+export function getConfig() {
+    return {
+        type: ACTIONS.GET_CONFIG
+    }
+}
+
+export function saveConfig(config) {
+    return {
+        type: ACTIONS.SAVE_CONFIG,
+        payload: {config}
+    }
+}
+
+export function getUsers() {
+    return {
+        type: ACTIONS.GET_USERS
+    }
+}
+
+export function addUser(user) {
+    return {
+        type: ACTIONS.ADD_USER,
+        payload: {user}
+    }
+}
+
+export function removeUser(userId) {
+    return {
+        type: ACTIONS.REMOVE_USER,
+        payload: {userId}
+    }
+}
+
+export function removeProduct(productId) {
+    return {
+        type: ACTIONS.REMOVE_PRODUCT,
+        payload: {productId}
     }
 }
