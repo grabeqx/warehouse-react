@@ -19,11 +19,11 @@ if (isset($_POST['username']) and isset($_POST['password'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="styles/login.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="./dist/style.css">
+    <link rel="stylesheet" href="/dist/style.css">
     <title>Warehouse</title>
 </head>
 <body>
@@ -50,19 +50,22 @@ if (isset($_POST['username']) and isset($_POST['password'])){
         $query = "SELECT * FROM users WHERE username='$session_user'";
         $result = mysqli_query($connection, $query);
         $session_user_id = 0;
+        $isAdmin = 0;
         if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_assoc($result)) {
                 $session_user_id = $row["id"];
+                $isAdmin = $row["isAdmin"];
             }
         }
     ?>
         <script type="text/javascript">
             window.user='<?php echo $session_user;?>';
             window.userId=<?php echo $session_user_id;?>;
+            window.isAdmin=<?php echo $isAdmin;?>;
         </script>
         <div id="root"></div>
-        <script src="./dist/vendor.js" type="text/javascript"></script>
-        <script src="./dist/main.js" type="text/javascript"></script>
+        <script src="/dist/vendor.js" type="text/javascript"></script>
+        <script src="/dist/main.js" type="text/javascript"></script>
     <?php
     }
     ?>
