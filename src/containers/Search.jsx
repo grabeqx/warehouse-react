@@ -35,7 +35,7 @@ const SearchContainer = (props) => {
     return (
         <Animation in={props.visible}>
             <Grid container spacing={24}>
-                <Grid item xs={8}>
+                <Grid item xs={7}>
                     <FormControl className={classes.formControl}>
                         <InputLabel
                             FormControlClasses={{focused: classes.inputLabelFocused}}
