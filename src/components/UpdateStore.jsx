@@ -83,8 +83,7 @@ class UpdateStore extends React.Component {
         this.setState({
             multiLabel: '',
             selectedProducts: [],
-            query: '',
-            name: ''
+            query: ''
         }, () => this.props.getOrderedProducts(this.state.query))
     }
 
