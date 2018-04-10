@@ -18,7 +18,7 @@ class OrderedProducts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableTitles: ['Id','Zdjęcie', 'Nazwa', 'Cena', 'Ilość', 'Wydano'],
+            tableTitles: ['Id','Zdjęcie', 'Nazwa', 'Cena', 'Dostawca', 'Ilość'],
             products: this.props.products,
             loader: this.props.addLoader,
             type: this.props.type,
@@ -31,6 +31,13 @@ class OrderedProducts extends React.Component {
         this.defineProductOrder = this.defineProductOrder.bind(this);
         this.saveOrder = this.saveOrder.bind(this);
         this.downloadPdf = this.downloadPdf.bind(this);
+    }
+
+    componentDidMount() {
+        var lastColumn = this.state.type === 'fill' ? 'Dodano' : 'Wydano';
+        this.setState({
+            tableTitles: [...this.state.tableTitles, lastColumn]
+        })
     }
 
     componentWillReceiveProps(nextProps) {

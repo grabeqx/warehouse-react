@@ -80,6 +80,9 @@ const ProductsTable = props => {
                         </TableCell>
 
                         <TableCell className={props.editable ? "hideOnModile" : null}>{row.price}</TableCell>
+                        <Hidden mdDown>
+                            <TableCell>{row.provider}</TableCell>
+                        </Hidden>
                         <TableCell className={props.editable ? "hideOnModile" : null}>{row.quantity}</TableCell>
                         {props.editable ? <TableCell className={classes.mini}>
                             <Input

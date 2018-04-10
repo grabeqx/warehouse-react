@@ -9,7 +9,7 @@ class ProductTableComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableTitles: ['Id','Zdjęcie', 'Nazwa', 'Cena', 'Ilość'],
+            tableTitles: ['Id','Zdjęcie', 'Nazwa', 'Cena', 'Dostawca', 'Ilość'],
             tableRows: this.props.products,
             visible: true
         };

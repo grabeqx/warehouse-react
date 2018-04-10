@@ -13,7 +13,7 @@ const warehouseActions = {
             .then((response) => response.data[0]);
     },
 
-    addProduct: function({image, name, price, quantity, quantityAlert}) {
+    addProduct: function({image, name, price, quantity, quantityAlert, provider}) {
         const url = '/upload.php';
         const formData = new FormData();
         formData.append('image',image)
@@ -25,7 +25,7 @@ const warehouseActions = {
         return axios.post(url, formData,config)
             .then((response) => {
                 const image = response.data.length > 0 ? response.data : 'uploads/brak.jpg';
-                return axios.post("/dbCall.php", {addProduct: true, name, price, quantity, quantityAlert, image: image})
+                return axios.post("/dbCall.php", {addProduct: true, name, price, quantity, quantityAlert, provider, image: image})
                     .then((response) => {
                         return 'Dodano produkt';
                     })
@@ -137,7 +137,7 @@ const warehouseActions = {
             })
     },
 
-    updateProduct: function({image, name, price, quantity, quantityAlert, id}) {
+    updateProduct: function({image, name, price, quantity, quantityAlert, id, provider}) {
         if(typeof image !== 'string') {
             const url = '/upload.php';
             const formData = new FormData();
@@ -150,13 +150,13 @@ const warehouseActions = {
             return axios.post(url, formData,config)
                 .then((response) => {
                     const image = response.data.length > 0 ? response.data : 'uploads/brak.jpg';
-                    return axios.post("/dbCall.php", {updateProduct: true, name, price, quantity, quantityAlert, id, image: image})
+                    return axios.post("/dbCall.php", {updateProduct: true, name, price, quantity, quantityAlert, id, provider, image: '/'+image})
                         .then((response) => {
                             return 'Uaktualniono produkt';
                         })
                 });
         } else {
-            return axios.post("/dbCall.php", {updateProduct: true, name, price, quantity, quantityAlert, id, image: image})
+            return axios.post("/dbCall.php", {updateProduct: true, name, price, quantity, quantityAlert, id, provider, image: image})
                 .then((response) => {
                     return 'Uaktualniono produkt';
                 })

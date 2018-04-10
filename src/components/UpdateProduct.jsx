@@ -19,7 +19,8 @@ class UpdateProduct extends React.Component {
             quantityAlert: '',
             loader: this.props.addLoader,
             id: this.props.match.params.id,
-            productId: ''
+            productId: '',
+            provider: ''
         };
     }
 
@@ -35,7 +36,8 @@ class UpdateProduct extends React.Component {
             name: nextProps.product.name,
             price: nextProps.product.price,
             quantity: nextProps.product.quantity,
-            quantityAlert: nextProps.product.quantityAlert
+            quantityAlert: nextProps.product.quantityAlert,
+            provider: nextProps.product.provider
         });
     }
 
@@ -45,7 +47,7 @@ class UpdateProduct extends React.Component {
     }
     
     validateForm() {
-        return this.state.name !== '' && this.state.price !== '' && this.state.quantity !== '' && this.state.quantityAlert !== '';
+        return this.state.name !== '' && this.state.price !== '' && this.state.quantity !== '' && this.state.quantityAlert !== '' && this.state.provider !== '';
     }
 
     onChange(e) {

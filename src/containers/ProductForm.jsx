@@ -33,13 +33,16 @@ const ProductForm = (props) => {
     return (
         <Animation in={props.visible}>
             <Grid container spacing={24}>
-                <Grid item xs={12} sm={8} md={8}>
+                <Grid item xs={12} sm={8} md={8} lg={6}>
                     <Paper className={props.classes.paper}>
                         <Typography variant="headline" gutterBottom>Wypełnij dane o produkcie</Typography>
                         <form onSubmit={props.submitForm}>
                             <Grid container spacing={24}>
                                 <Grid item xs={12} className={props.classes.inputContainer}>
                                     <FormInput title="Nazwa" name="name" type="text" onChange={props.onChange} value={props.values.name}/>
+                                </Grid>
+                                <Grid item xs={12} className={props.classes.inputContainer}>
+                                    <FormInput title="Dostawca" name="provider" type="text" onChange={props.onChange} value={props.values.provider}/>
                                 </Grid>
                                 <Grid item xs={12} className={props.classes.inputContainer}>
                                     <FormInput title="Cena" name="price" type="text" onChange={props.onChange} value={props.values.price}/>

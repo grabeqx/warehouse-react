@@ -39,13 +39,19 @@ const ProductViewTop = ({product, classes, animationType, visible, isAdmin, edit
                         <Typography variant="display2" gutterBottom>
                             {product.name}
                         </Typography>
-                        <Typography variant="headline" gutterBottom>
+                        <Typography variant="title" gutterBottom>
                             Cena:
                         </Typography>
                         <Typography variant="subheading" gutterBottom>
                             {product.price} zł
                         </Typography>
-                        <Typography variant="headline" gutterBottom>
+                        <Typography variant="title" gutterBottom>
+                            Dostawca:
+                        </Typography>
+                        <Typography variant="subheading" gutterBottom>
+                            {product.provider}
+                        </Typography>
+                        <Typography variant="title" gutterBottom>
                             Ilość:
                         </Typography>
                         <Typography variant="subheading" gutterBottom>

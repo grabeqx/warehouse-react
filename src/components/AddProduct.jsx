@@ -18,6 +18,7 @@ class AddProduct extends React.Component {
             price: '',
             quantity: '',
             quantityAlert: '',
+            provider: '',
             loader: this.props.addLoader
         };
     }
@@ -47,7 +48,8 @@ class AddProduct extends React.Component {
             name: '',
             price: '',
             quantity: '',
-            quantityAlert: ''
+            quantityAlert: '',
+            provider: ''
         })
     }
 

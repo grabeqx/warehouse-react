@@ -8,7 +8,8 @@ const productReducer = (state = {
         quantity: 0,
         price: '0',
         image: '#',
-        quantityAlert: 0
+        quantityAlert: 0,
+        provider: ''
     },
     orders: [],
     update: 0

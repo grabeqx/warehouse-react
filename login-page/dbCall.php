@@ -50,7 +50,8 @@ if (isset($_POST["addProduct"])) {
 	$quantity = $_POST['quantity'];
 	$image = $_POST['image'];
 	$quantityAlert = $_POST['quantityAlert'];
-	$sql = "INSERT INTO products (id, name, quantity, quantityAlert, price, image) VALUES (NULL, '$name', $quantity, $quantityAlert, '$price', '/$image')";
+	$provider = $_POST['provider'];
+	$sql = "INSERT INTO products (id, name, quantity, quantityAlert, price, image, provider) VALUES (NULL, '$name', $quantity, $quantityAlert, '$price', '/$image', '$provider')";
 	$result = $conn->query($sql);
 	echo $result;
 }
@@ -205,7 +206,8 @@ if (isset($_POST["updateProduct"])) {
 	$image = $_POST['image'];
 	$quantityAlert = $_POST['quantityAlert'];
 	$id = $_POST['id'];
-	$sql = "UPDATE products SET name = '$name', price = '$price', quantity = $quantity, image = '/$image', quantityAlert = $quantityAlert WHERE id = $id ";
+	$provider = $_POST['provider'];
+	$sql = "UPDATE products SET name = '$name', price = '$price', quantity = $quantity, image = '$image', quantityAlert = $quantityAlert, provider = '$provider' WHERE id = $id ";
 	$result = $conn->query($sql);
 	echo $result;
 }

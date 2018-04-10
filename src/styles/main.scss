@@ -105,13 +105,15 @@ table {
 @media screen and (max-width: 1280px) {
 
     .productsTable {
-        thead tr th:nth-of-type(2) {
+        thead tr th:nth-of-type(2),
+        thead tr th:nth-of-type(5) {
             display: none;
         }
     }
     .productsTableOrder {
-        thead tr th:nth-of-type(3),
-        thead tr th:nth-of-type(5) {
+        thead tr th:nth-of-type(4),
+        thead tr th:nth-of-type(5),
+        thead tr th:nth-of-type(6) {
             display: none;
         }
     }
