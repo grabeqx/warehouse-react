@@ -12,8 +12,7 @@ import Filter from './Filter';
 
 const styles = theme => ({
     formControl: {
-        margin: theme.spacing.unit,
-        width: "100%"
+        width: "100%",
     },
     inputLabelFocused: {
         color: purple[500]
@@ -35,7 +34,7 @@ const SearchContainer = (props) => {
     return (
         <Animation in={props.visible}>
             <Grid container spacing={24}>
-                <Grid item xs={7}>
+                <Grid item md={5} sm={12} xs={12}>
                     <FormControl className={classes.formControl}>
                         <InputLabel
                             FormControlClasses={{focused: classes.inputLabelFocused}}
@@ -51,18 +50,21 @@ const SearchContainer = (props) => {
                         />
                     </FormControl>
                 </Grid>
-                <Grid item container xs={4}>
-                    <Grid item xs={4}>
-                        <Filter fieldName="Podaj ilość" inputStartText="Od" filterEvent={props.filterStart} value={props.filterStartValue}/>
+                <Grid item md={7} sm={12} >
+                    <Grid container spacing={24}>
+                        <Grid item md={4} sm={6} xs={10}>
+                            <Filter fieldName="Podaj ilość" inputStartText="Od" filterEvent={props.filterStart} value={props.filterStartValue}/>
+                        </Grid>
+                        <Grid item md={4} sm={6} xs={10}>
+                            <Filter fieldName="Podaj ilość" inputStartText="Do" filterEvent={props.filterEnd} value={props.filterEndValue}/>
+                        </Grid>
+                        <Grid item sm={12} md={4} xs={12} className={classes.buttonGrid}>
+                            <Grid container spacing={24}>
+                                <Button color="primary" onClick={props.addFilters}>Filtruj</Button>
+                                <Button onClick={props.reset}>Reset</Button>
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={4}>
-                        <Filter fieldName="Podaj ilość" inputStartText="Do" filterEvent={props.filterEnd} value={props.filterEndValue}/>
-                    </Grid>
-                    <Grid item xs={4} className={classes.buttonGrid}>
-                        <Button color="primary" onClick={props.addFilters}>Filtruj</Button>
-                        <Button onClick={props.reset}>Reset</Button>
-                    </Grid>
-                    
                 </Grid>
             </Grid>
         </Animation>

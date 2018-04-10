@@ -12,7 +12,9 @@ import { MenuItem } from "material-ui/Menu";
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import Menu from 'material-ui-icons/Menu';
+import PowerSettingsNew from 'material-ui-icons/PowerSettingsNew';
 import IconButton from 'material-ui/IconButton';
+import Hidden from 'material-ui/Hidden';
 
 import UserInfo from './UserInfo';
 import { handleDrawerToggle } from '../actions/actions';
@@ -24,7 +26,6 @@ const styles = theme => ({
         [theme.breakpoints.up('md')]: {
           width: `calc(100% - ${drawerWidth}px)`,
         },
-        padding: '5px'
     },
     root: {
         flexGrow: 1,
@@ -37,6 +38,11 @@ const styles = theme => ({
           display: 'none',
         },
     },
+    mainToolbar: {
+        [theme.breakpoints.down('sm')]: {
+            padding: '0px'
+        },
+    }
 });
 
 var MainAppBar = (props) => {
@@ -45,7 +51,7 @@ var MainAppBar = (props) => {
         <AppBar
             position="fixed"
             className={classNames(classes.appBar, classes.root)}>
-            <Toolbar>
+            <Toolbar className={classes.mainToolbar}>
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
@@ -57,8 +63,8 @@ var MainAppBar = (props) => {
                 <Typography variant="title" color="inherit" noWrap className={classes.flex}>
                 {props.title}
                 </Typography>
-                <UserInfo />
-                <Button color="inherit" href="/logout.php">Wyloguj się</Button>
+                <Hidden mdDown><UserInfo /></Hidden>
+                <Button color="inherit" href="/logout.php"><Hidden mdDown>Wyloguj się</Hidden><Hidden lgUp><PowerSettingsNew /></Hidden></Button>
             </Toolbar>
         </AppBar>
     )

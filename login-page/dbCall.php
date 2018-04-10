@@ -49,7 +49,8 @@ if (isset($_POST["addProduct"])) {
 	$price = $_POST['price'];
 	$quantity = $_POST['quantity'];
 	$image = $_POST['image'];
-	$sql = "INSERT INTO products (id, name, quantity, price, image) VALUES (NULL, '$name', $quantity, '$price', '/$image')";
+	$quantityAlert = $_POST['quantityAlert'];
+	$sql = "INSERT INTO products (id, name, quantity, quantityAlert, price, image) VALUES (NULL, '$name', $quantity, $quantityAlert, '$price', '/$image')";
 	$result = $conn->query($sql);
 	echo $result;
 }
@@ -82,7 +83,8 @@ if (isset($_POST["addOrder"])) {
 	$date = $_POST['date'];
 	$productsIds = $_POST['productsIds'];
 	$type = $_POST['type'];
-	$sql = "INSERT INTO orders (id, products, userId, date, productsIds, type) VALUES (NULL, '$products', '$userId', '$date', '|$productsIds|', '$type')";
+	$name = $_POST['name'];
+	$sql = "INSERT INTO orders (id, name, products, userId, date, productsIds, type) VALUES (NULL, '$name', '$products', '$userId', '$date', '|$productsIds|', '$type')";
 	$result = $conn->query($sql);
 	echo $result;
 }
@@ -193,7 +195,20 @@ if (isset($_POST["removeProduct"])) {
 	$productId = $_POST['productId'];
 	$sql = "DELETE FROM products WHERE id = $productId";
 	$result = $conn->query($sql);
+	echo $sql;
+}
+
+if (isset($_POST["updateProduct"])) {
+	$name = $_POST['name'];
+	$price = $_POST['price'];
+	$quantity = $_POST['quantity'];
+	$image = $_POST['image'];
+	$quantityAlert = $_POST['quantityAlert'];
+	$id = $_POST['id'];
+	$sql = "UPDATE products SET name = '$name', price = '$price', quantity = $quantity, image = '/$image', quantityAlert = $quantityAlert WHERE id = $id ";
+	$result = $conn->query($sql);
 	echo $result;
 }
+
 
 ?>

@@ -7,8 +7,11 @@ import purple from "material-ui/colors/purple";
 
 const styles = theme => ({
     formControl: {
-        margin: theme.spacing.unit,
-        width: "100%"
+        [theme.breakpoints.up('sm')]: {
+            width: "100%",
+        },
+        boxSizing: 'border-box',
+        margin: '0px;'
     },
     inputLabelFocused: {
         color: purple[500]

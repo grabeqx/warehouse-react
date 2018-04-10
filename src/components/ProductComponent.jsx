@@ -15,7 +15,7 @@ class ProductComponent extends React.Component {
         this.state = {
             id: this.props.match.params.id,
             product: this.props.product,
-            tableTitles: ['Id','Data', 'Id pracownika', 'Ilość'],
+            tableTitles: ['Nazwa','Data', 'Id pracownika', 'Ilość'],
             orders: this.props.orders,
             isAdmin: this.props.isAdmin
         };

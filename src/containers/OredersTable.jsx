@@ -10,6 +10,7 @@ import Input, {InputAdornment } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
 import ArrowDropDown from 'material-ui-icons/ArrowDropDown';
 import ArrowDropUp from 'material-ui-icons/ArrowDropUp';
+import Hidden from 'material-ui/Hidden';
 
 const styles = theme => ({
     root: {
@@ -51,7 +52,7 @@ const OredersTable = props => {
   return (
     <Animation in={props.visible}>
         <Paper className={classes.root} elevation={1}>
-            <Table className={classes.table}>
+            <Table className={classes.table + ' ordersTable'}>
                 <TableHead>
                     <TableRow>
                         {props.tableTitles.map((title, index) => <TableCell className={classes.head} key={index}>{title}</TableCell>)}
@@ -73,8 +74,10 @@ const OredersTable = props => {
                     return (
                         <TableRow key={row.id} className={status}>
                             <TableCell>{row.name}</TableCell>
-                            <TableCell>{row.date}</TableCell>
-                            <TableCell>{row.userId}</TableCell>
+                            <Hidden mdDown>
+                                <TableCell>{row.date}</TableCell>
+                                <TableCell>{row.userId}</TableCell>
+                            </Hidden>
                             <TableCell>
                                 <p className={classes.quantityContainer}>
                                     {icon === 'up' ? <ArrowDropUp /> : <ArrowDropDown />}

@@ -35,7 +35,7 @@ body {
 }
 .form-signin label {
     display: block;
-    width: 10%;
+    width: 40px;
     text-align: right;
     box-sizing: border-box;
     clear: both;
@@ -47,7 +47,7 @@ body {
 .form-signin input[type="text"],
 .form-signin input[type="password"] {
     display: block;
-    width: 70%;
+    width: calc(85% - 40px);
     margin-left: 5%;
     float: left;
     padding: 10px;

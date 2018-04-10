@@ -8,6 +8,7 @@ import Avatar from 'material-ui/Avatar';
 import { Link } from 'react-router-dom';
 import Input, {InputAdornment } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
+import Hidden from 'material-ui/Hidden';
 
 import CONFIG from '../constants/config';
 
@@ -31,7 +32,10 @@ const styles = theme => ({
         maxWidth: "50px"
     },
     removePadding: {
-        padding: "0px"
+        padding: '10px',
+        [theme.breakpoints.up('md')]: {
+            padding: "0px",
+        },
     },
     titleLink: {
         textDecoration: "none", 
@@ -40,6 +44,9 @@ const styles = theme => ({
         display: "flex",
         height: "45px",
         alignItems: "center"
+    },
+    valueInput: {
+        width: '100%'
     }
 });
 
@@ -49,7 +56,7 @@ const ProductsTable = props => {
   return (
     <Animation in={props.visible}>
         <Paper className={classes.root} elevation={1}>
-            <Table className={classes.table}>
+            <Table className={props.editable ? classes.table + ' productsTable productsTableOrder' :classes.table + ' productsTable' }>
                 <TableHead>
                     <TableRow>
                         {props.tableTitles.map((title, index) => <TableCell className={classes.head} key={index}>{title}</TableCell>)}
@@ -58,18 +65,22 @@ const ProductsTable = props => {
                 <TableBody>
                 {props.tableRows.map((row) => (
                     <TableRow key={row.id} className={row.quantity == 0 ? "empty" : parseInt(row.quantity) <= parseInt(row.quantityAlert) ? "danger": null}>
-                        <TableCell className={classes.narrowColumn}>{row.id}</TableCell>
-                        <TableCell className={classes.narrowColumn}>
-                            <Avatar src={row.image}></Avatar>
-                        </TableCell>
+                        <Hidden smDown>
+                            <TableCell className={classes.narrowColumn}>{row.id}</TableCell>
+                        </Hidden>
+                        <Hidden mdDown>
+                            <TableCell className={classes.narrowColumn}>
+                                <Avatar src={row.image}></Avatar>
+                            </TableCell>
+                        </Hidden>
                         <TableCell className={classes.removePadding}>
                             {!props.noLink ? <Link to={"/product/" + row.id} className={classes.titleLink}>
                                 {row.name}
                             </Link> : row.name}
                         </TableCell>
 
-                        <TableCell>{row.price}</TableCell>
-                        <TableCell>{row.quantity}</TableCell>
+                        <TableCell className={props.editable ? "hideOnModile" : null}>{row.price}</TableCell>
+                        <TableCell className={props.editable ? "hideOnModile" : null}>{row.quantity}</TableCell>
                         {props.editable ? <TableCell className={classes.mini}>
                             <Input
                                 id="adornment-weight"
@@ -77,6 +88,7 @@ const ProductsTable = props => {
                                 value={props.type === 'fill' ? row.add :row.remove}
                                 onChange={(e) => props.defineProductOrder(e, row.id)}
                                 placeholder="0"
+                                className={classes.valueInput}
                                 endAdornment={<InputAdornment position="end">Sztuk</InputAdornment>}
                                 inputProps={{
                                     'aria-label': 'Wydano',

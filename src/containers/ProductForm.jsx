@@ -33,7 +33,7 @@ const ProductForm = (props) => {
     return (
         <Animation in={props.visible}>
             <Grid container spacing={24}>
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={8} md={8}>
                     <Paper className={props.classes.paper}>
                         <Typography variant="headline" gutterBottom>Wypełnij dane o produkcie</Typography>
                         <form onSubmit={props.submitForm}>

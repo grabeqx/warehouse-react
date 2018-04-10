@@ -9,7 +9,8 @@ import MainAppBar from "./MainAppBar";
 const drawerWidth = 240;
 const styles = theme => ({
     root: {
-        flexGrow: 1
+        flexGrow: 1,
+        paddingTop: theme.spacing.unit * 2
     },
     appFrame: {
         minHeight: "100vh",

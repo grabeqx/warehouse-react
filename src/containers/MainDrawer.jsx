@@ -43,7 +43,7 @@ var MainDraver = (props) => {
                         {MENU.map((menuItem, index) => {
                             let MenuIcon = menuItem.icon;
                             return (
-                                <Link to={menuItem.url} key={index} style={{ textDecoration: 'none' }}>
+                                <Link to={menuItem.url} key={index} style={{ textDecoration: 'none' }} onClick={props.handleDrawerToggle}>
                                     {(menuItem.name === 'Admin' && !props.isAdmin) ? null :
                                     <ListItem button>
                                         <ListItemIcon>

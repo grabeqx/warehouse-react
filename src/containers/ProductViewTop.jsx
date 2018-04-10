@@ -28,12 +28,12 @@ const ProductViewTop = ({product, classes, animationType, visible, isAdmin, edit
     return (
         <Animation in={visible}>
             <Grid container spacing={24}>
-                <Grid item xs={4}>
+                <Grid item md={4} xs={12}>
                     <Paper className={classes.imageContainer}>
                         <img src={product.image} className={classes.image}/>
                     </Paper>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item md={8} xs={12}>
                     <Paper className={classes.paper}>
                         {isAdmin ? <Button color="primary" onClick={editProduct} className={classes.pullRight}>Edytuj</Button> : null}
                         <Typography variant="display2" gutterBottom>

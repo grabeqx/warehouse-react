@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
-
+import Hidden from 'material-ui/Hidden';
 
 const styles = theme => ({
     root: {
@@ -22,7 +22,7 @@ const RaportTable = (props) => {
     return (
         <Animation in={props.visible}>
             <Paper>
-                <Table id="print">
+                <Table id="print" className={props.products ? 'raportProducts' : 'raportTable'}>
                     <TableHead>
                     <TableRow>
                         {props.labels.map((label, index) => (
@@ -36,7 +36,9 @@ const RaportTable = (props) => {
                         return (
                             <TableRow key={order.id}>
                                 <TableCell>{order.name}</TableCell>
-                                <TableCell>{order.date}</TableCell>
+                                <Hidden mdDown>
+                                    <TableCell>{order.date}</TableCell>
+                                </Hidden>
                                 <TableCell>
                                     {products.map((product) => (
                                         <p key={product.id}><strong>{product.name}</strong> - {product.remove}<br/></p>
@@ -48,7 +50,9 @@ const RaportTable = (props) => {
                     {props.products && props.products.map(product => {
                         return (
                             <TableRow key={product.id}>
-                                <TableCell>{product.id}</TableCell>
+                                <Hidden mdDown>
+                                    <TableCell>{product.id}</TableCell>
+                                </Hidden>
                                 <TableCell>{product.name}</TableCell>
                                 <TableCell>{props.singleOrder ? product.remove : product.quantity}</TableCell>
                             </TableRow>
