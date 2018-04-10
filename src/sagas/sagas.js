@@ -25,6 +25,11 @@ function* addProduct(action) {
     yield put({type: ACTIONS.ADD_PRODUCT_SUCCESS, payload: {status}});
 }
 
+function* updateProduct(action) {
+    const status = yield call(warehouseActions.updateProduct, action.payload.product);
+    yield put({type: ACTIONS.UPDATE_PRODUCT_SUCCESS, payload: {status}});
+}
+
 function* getOrderedProducts(action) {
     const products = yield call(warehouseActions.getOrderProduct, action.payload.query);
     yield put({type: ACTIONS.GET_ORDERED_PRODUCTS_SUCCESS, payload: {products}});
@@ -117,6 +122,7 @@ function* warehouseSaga() {
     yield takeLatest(ACTIONS.REMOVE_USER, removeUser);
     yield takeLatest(ACTIONS.SAVE_CONFIG, saveConfig);
     yield takeLatest(ACTIONS.REMOVE_PRODUCT, removeProduct);
+    yield takeLatest(ACTIONS.UPDATE_PRODUCT, updateProduct);
 }
 
 export default warehouseSaga;

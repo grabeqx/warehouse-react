@@ -124,8 +124,7 @@ function removeDiacritics (str) {
     return str;
   }
 
-export function HTMLtoPDF(content) {
-    var dict = {"á":"a", "á":"a", "ç":"c", "ć": "c", "ą":'a', "ź": "z"};
+export function HTMLtoPDF() {
     var doc = new jsPDF();
     var table = document.getElementById("print").outerHTML;
     var newTable = removeDiacritics(table);
@@ -136,5 +135,30 @@ export function HTMLtoPDF(content) {
     doc.autoTable(res.columns, res.data, {
       startY: 10
     });
+    doc.save('raport.pdf');
+}
+
+export function singleHTMLtoPDF(name) {
+    var doc = new jsPDF();
+    doc.setFontSize(18);
+    doc.text('Zlecenie: ' + name, 14, 22);
+    doc.setFontSize(11);
+    doc.setTextColor(100);
+    var table = document.getElementById("print").outerHTML;
+    var newTable = removeDiacritics(table);
+    var htmlObject = document.createElement('div');
+    htmlObject.innerHTML = newTable;
+    var res = doc.autoTableHtmlToJson(htmlObject.querySelector('#print'));
+    doc.autoTable(res.columns, res.data, {
+      startY: 30,
+      theme: 'plain',
+      styles: {
+            lineColor: [0,0,0],
+            lineWidth: 0.3
+        }
+    });
+    doc.text('___________________', 14, doc.autoTable.previous.finalY + 15);
+    doc.setFontSize(8);
+    doc.text('                   (podpis)', 14, doc.autoTable.previous.finalY + 20);
     doc.save('raport.pdf');
 }

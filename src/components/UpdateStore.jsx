@@ -14,11 +14,13 @@ class UpdateStore extends React.Component {
             products: this.props.products,
             query: '',
             selectedProducts: [],
-            type: this.props.type
+            type: this.props.type,
+            name: this.props.type === 'empty' ? '' : 'Uzupełnienie stanu'
         };
         this.handleChange = this.handleChange.bind(this);
         this.loadNewData = this.loadNewData.bind(this);
         this.clearSelect = this.clearSelect.bind(this);
+        this.changeName = this.changeName.bind(this);
     }
 
     componentDidMount() {
@@ -60,6 +62,12 @@ class UpdateStore extends React.Component {
         });
     }
 
+    changeName(e) {
+        this.setState({
+            name: e.target.value
+        })
+    }
+
     displaySelectedProducts() {
         let ids = this.state.multiLabel.split(',');
         let selectedProducts = this.state.products.filter((product) => {
@@ -75,7 +83,8 @@ class UpdateStore extends React.Component {
         this.setState({
             multiLabel: '',
             selectedProducts: [],
-            query: ''
+            query: '',
+            name: ''
         }, () => this.props.getOrderedProducts(this.state.query))
     }
 
@@ -94,6 +103,8 @@ class UpdateStore extends React.Component {
                 <OrderedProducts 
                     products={this.state.selectedProducts}
                     type={this.state.type}
+                    name={this.state.name}
+                    changeName={this.changeName}
                 />
             </React.Fragment>
         )

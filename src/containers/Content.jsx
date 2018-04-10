@@ -23,9 +23,12 @@ const styles = theme => ({
     content: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.default,
-        padding: theme.spacing.unit * 3,
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth+'px'
+        padding: theme.spacing.unit * 1,
+        [theme.breakpoints.up('md')]: {
+            width: `calc(100% - ${drawerWidth}px)`,
+            marginLeft: drawerWidth+'px',
+            padding: theme.spacing.unit * 3,
+        },
     }
 });
 

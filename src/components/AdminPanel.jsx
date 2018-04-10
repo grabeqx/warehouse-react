@@ -29,7 +29,7 @@ class AdminPanel extends React.Component {
                             <RemoveUser />
                         </Grid>
                         <Grid item xs={12}>
-                            <AdditionalOptions />
+                            {/* <AdditionalOptions /> */}
                         </Grid>
                     </Grid>
                 </Grid>

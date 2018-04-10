@@ -13,7 +13,7 @@ const warehouseActions = {
             .then((response) => response.data[0]);
     },
 
-    addProduct: function({image, name, price, quantity}) {
+    addProduct: function({image, name, price, quantity, quantityAlert}) {
         const url = '/upload.php';
         const formData = new FormData();
         formData.append('image',image)
@@ -25,7 +25,7 @@ const warehouseActions = {
         return axios.post(url, formData,config)
             .then((response) => {
                 const image = response.data.length > 0 ? response.data : 'uploads/brak.jpg';
-                return axios.post("/dbCall.php", {addProduct: true, name, price, quantity, image: image})
+                return axios.post("/dbCall.php", {addProduct: true, name, price, quantity, quantityAlert, image: image})
                     .then((response) => {
                         return 'Dodano produkt';
                     })
@@ -51,7 +51,8 @@ const warehouseActions = {
                 products: JSON.stringify(payload.products),
                 date: payload.date,
                 productsIds: payload.productsIds,
-                type: payload.type
+                type: payload.type,
+                name: payload.name
             })
             .then((response) => {
                 return 'Zapisano zlecenie'
@@ -132,10 +133,35 @@ const warehouseActions = {
                 productId: payload.productId
             })
             .then((response) => {
-                console.log(response.data);
                 return 'Usunięto'
             })
-    }
+    },
+
+    updateProduct: function({image, name, price, quantity, quantityAlert, id}) {
+        if(typeof image !== 'string') {
+            const url = '/upload.php';
+            const formData = new FormData();
+            formData.append('image',image)
+            const config = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            }
+            return axios.post(url, formData,config)
+                .then((response) => {
+                    const image = response.data.length > 0 ? response.data : 'uploads/brak.jpg';
+                    return axios.post("/dbCall.php", {updateProduct: true, name, price, quantity, quantityAlert, id, image: image})
+                        .then((response) => {
+                            return 'Uaktualniono produkt';
+                        })
+                });
+        } else {
+            return axios.post("/dbCall.php", {updateProduct: true, name, price, quantity, quantityAlert, id, image: image})
+                .then((response) => {
+                    return 'Uaktualniono produkt';
+                })
+        }
+    },
     
 }
 

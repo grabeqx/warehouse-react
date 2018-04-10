@@ -20,13 +20,15 @@ class ProductComponent extends React.Component {
             isAdmin: this.props.isAdmin
         };
         this.remove = this.remove.bind(this);
+        this.editProduct = this.editProduct.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         this.setState({
             product: nextProps.product,
             orders: nextProps.orders
+        }, () => {
+            nextProps.update && this.props.getProduct(this.state.id);
         });
     }
 
@@ -35,8 +37,13 @@ class ProductComponent extends React.Component {
         this.props.getProductOrders(this.state.id);
     }
 
+    editProduct() {
+        this.props.history.push('/edit/'+this.state.id);
+    }
+
     remove() {
         this.props.removeProduct(this.state.id);
+        this.props.history.push('/');
     }
 
     render() {
@@ -46,6 +53,8 @@ class ProductComponent extends React.Component {
                     product={this.state.product}
                     animationType={Fade}
                     visible={true}
+                    isAdmin={this.state.isAdmin}
+                    editProduct={this.editProduct}
                 />
                 { this.state.orders.length > 0 ?
                     <OredersTable 
@@ -72,6 +81,7 @@ class ProductComponent extends React.Component {
 function mapStateToProps(state){
     return {
         product: state.productReducer.product,
+        update: state.productReducer.update,
         orders: state.productReducer.orders,
         isAdmin: state.appReducer.isAdmin
     }

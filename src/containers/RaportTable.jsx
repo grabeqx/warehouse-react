@@ -35,7 +35,7 @@ const RaportTable = (props) => {
                         let products = JSON.parse(order.products);
                         return (
                             <TableRow key={order.id}>
-                                <TableCell>{order.id}</TableCell>
+                                <TableCell>{order.name}</TableCell>
                                 <TableCell>{order.date}</TableCell>
                                 <TableCell>
                                     {products.map((product) => (
@@ -50,7 +50,7 @@ const RaportTable = (props) => {
                             <TableRow key={product.id}>
                                 <TableCell>{product.id}</TableCell>
                                 <TableCell>{product.name}</TableCell>
-                                <TableCell>{product.quantity}</TableCell>
+                                <TableCell>{props.singleOrder ? product.remove : product.quantity}</TableCell>
                             </TableRow>
                         );
                     })}

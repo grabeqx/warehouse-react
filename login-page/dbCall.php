@@ -193,7 +193,7 @@ if (isset($_POST["removeProduct"])) {
 	$productId = $_POST['productId'];
 	$sql = "DELETE FROM products WHERE id = $productId";
 	$result = $conn->query($sql);
-	echo $sql;
+	echo $result;
 }
 
 ?>

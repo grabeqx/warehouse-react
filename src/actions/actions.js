@@ -48,6 +48,13 @@ export function addProduct(product) {
     }
 }
 
+export function updateProduct(product) {
+    return {
+        type: ACTIONS.UPDATE_PRODUCT,
+        payload: {product}
+    }
+}
+
 export function selectValue(id) {
     return {
         type: ACTIONS.ADD_PRODUCT,
@@ -82,10 +89,10 @@ export function closeNotify() {
     }
 }
 
-export function addOrder(products, date, productsIds, type) {
+export function addOrder(products, date, productsIds, type, name) {
     return {
         type: ACTIONS.ADD_ORDER,
-        payload: {products, date, productsIds, type}
+        payload: {products, date, productsIds, type, name}
     }
 }
 
@@ -163,5 +170,11 @@ export function removeProduct(productId) {
     return {
         type: ACTIONS.REMOVE_PRODUCT,
         payload: {productId}
+    }
+}
+
+export function handleDrawerToggle() {
+    return {
+        type: ACTIONS.TOGGLE_DRAWER
     }
 }

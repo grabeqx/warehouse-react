@@ -11,8 +11,7 @@ class ProductTableComponent extends React.Component {
         this.state = {
             tableTitles: ['Id','Zdjęcie', 'Nazwa', 'Cena', 'Ilość'],
             tableRows: this.props.products,
-            visible: true,
-            productAlert: this.props.productAlert
+            visible: true
         };
     }
 
@@ -28,8 +27,17 @@ class ProductTableComponent extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            tableRows: nextProps.products,
-            productAlert: this.props.productAlert
+            tableRows: nextProps.products
+        }, () => {
+            if(nextProps.loadNewProducts) {
+                this.props.getProducts(
+                    this.props.productPage, 
+                    this.props.productStep, 
+                    this.props.query, 
+                    this.props.filterStart, 
+                    this.props.filterEnd
+                );
+            }
         });
     }
 
@@ -55,7 +63,7 @@ function mapstateToProps(state) {
         query: state.productsReducer.query,
         filterStart: state.productsReducer.filterStart,
         filterEnd: state.productsReducer.filterEnd,
-        productAlert: state.productsReducer.productAlert
+        loadNewProducts: state.productsReducer.loadNewProducts
     }
 }
 

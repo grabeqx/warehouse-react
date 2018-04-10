@@ -10,7 +10,8 @@ const appReducer = (state = {
     notify: false,
     notifyText: '',
     users: [],
-    config: {}
+    config: {},
+    mobileOpen: false
 }, action) => {
     switch(action.type) {
         
@@ -19,6 +20,7 @@ const appReducer = (state = {
         case ACTIONS.ADD_USER:
         case ACTIONS.REMOVE_USER:
         case ACTIONS.SAVE_CONFIG:
+        case ACTIONS.UPDATE_PRODUCT:
             return {
                 ...state,
                 addLoader: 1
@@ -30,6 +32,7 @@ const appReducer = (state = {
         case ACTIONS.SAVE_CONFIG_SUCCESS:
         case ACTIONS.NOTIFY_USER:
         case ACTIONS.REMOVE_PRODUCT_SUCCESS:
+        case ACTIONS.UPDATE_PRODUCT_SUCCESS:
             return {
                 ...state,
                 addLoader: 0,
@@ -52,6 +55,12 @@ const appReducer = (state = {
                 ...state,
                 users: action.payload.users
             }
+        case ACTIONS.TOGGLE_DRAWER: {
+            return {
+                ...state,
+                mobileOpen: !state.mobileOpen
+            }
+        }
         default:
             return state;
     }

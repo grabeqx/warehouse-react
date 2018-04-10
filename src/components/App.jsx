@@ -14,6 +14,7 @@ import Order from './Order';
 import FillStore from './FillStore';
 import ProductComponent from './ProductComponent';
 import Notify from './Notify';
+import UpdateProduct from './UpdateProduct';
 
 import { getConfig } from '../actions/actions';
 
@@ -34,6 +35,7 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path="/" component={Warehouse} />
                         <Route path="/product/:id" component={ProductComponent} />                        
+                        <Route path="/edit/:id" component={UpdateProduct} />                        
                         <Route path="/order" component={Order} />
                         <Route path="/report" component={Report} />
                         <Route path="/add" component={AddProduct} />

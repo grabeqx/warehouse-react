@@ -59,7 +59,6 @@ const OredersTable = props => {
                 </TableHead>
                 <TableBody>
                 {props.orders.map((row) => {
-                    console.log(JSON.parse(row.products));
                     let product = JSON.parse(row.products).find((product) => product.id === props.productId);
                     let quantity = null, status = '', icon = '';
                     if(product && parseInt(product.add) > 0) {
@@ -73,7 +72,7 @@ const OredersTable = props => {
                     }
                     return (
                         <TableRow key={row.id} className={status}>
-                            <TableCell>{row.id}</TableCell>
+                            <TableCell>{row.name}</TableCell>
                             <TableCell>{row.date}</TableCell>
                             <TableCell>{row.userId}</TableCell>
                             <TableCell>

@@ -3,52 +3,49 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Fade from 'material-ui/transitions/Fade';
 
-import { changeTitle, addProduct } from '../actions/actions';
+import { changeTitle, getProduct, updateProduct } from '../actions/actions';
 import ProductForm from '../containers/ProductForm';
 
-class AddProduct extends React.Component {
+class UpdateProduct extends React.Component {
     constructor(props) {
         super(props);
         this.submitForm =this.submitForm.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.clearForm = this.clearForm.bind(this);
         this.state = {
             image: '',
             name: '',
             price: '',
             quantity: '',
             quantityAlert: '',
-            loader: this.props.addLoader
+            loader: this.props.addLoader,
+            id: this.props.match.params.id,
+            productId: ''
         };
     }
 
     componentDidMount() {
-        this.props.changeTitle('Dodaj produkt');
+        this.props.changeTitle('Edytuj produkt');
+        this.props.getProduct(this.state.id);
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            loader: nextProps.addLoader
+            loader: nextProps.addLoader,
+            image: nextProps.product.image,
+            name: nextProps.product.name,
+            price: nextProps.product.price,
+            quantity: nextProps.product.quantity,
+            quantityAlert: nextProps.product.quantityAlert
         });
     }
 
     submitForm(e) {
         e.preventDefault();
-        this.validateForm() && this.props.addProduct(this.state) && this.clearForm();
+        this.validateForm() && this.props.updateProduct(this.state) && this.props.history.push('/product/'+this.state.id);
     }
     
     validateForm() {
         return this.state.name !== '' && this.state.price !== '' && this.state.quantity !== '' && this.state.quantityAlert !== '';
-    }
-
-    clearForm() {
-        this.setState({
-            image: '',
-            name: '',
-            price: '',
-            quantity: '',
-            quantityAlert: ''
-        })
     }
 
     onChange(e) {
@@ -72,7 +69,7 @@ class AddProduct extends React.Component {
                 showLoader={this.state.loader}
                 animationType={Fade}
                 visible={true}
-                submitText="Dodaj"
+                submitText="Zapisz"
             />
         )
     }
@@ -81,8 +78,9 @@ class AddProduct extends React.Component {
 function mapStateToProps(state) {
     return {
         title: state.appReducer.title,
-        addLoader: state.appReducer.addLoader
+        addLoader: state.appReducer.addLoader,
+        product: state.productReducer.product
     }
 }
 
-export default connect(mapStateToProps, { changeTitle, addProduct })(AddProduct);
+export default connect(mapStateToProps, { changeTitle, getProduct, updateProduct })(UpdateProduct);

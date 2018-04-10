@@ -17,7 +17,7 @@ class Report extends React.Component {
             orders: this.props.orders,
             tabValue: 0,
             products: [],
-            ordersLabels: ['Id', 'Data', 'Produkty'],
+            ordersLabels: ['Nazwa zlecenia', 'Data', 'Produkty'],
             productsLabels: ['Id', 'Nazwa', 'Ilość']
         };
         this.handleChange = this.handleChange.bind(this);
@@ -50,7 +50,7 @@ class Report extends React.Component {
     }
 
     downloadPdf() {
-        HTMLtoPDF('#print');
+        HTMLtoPDF();
     }
 
     render() {

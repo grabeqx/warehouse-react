@@ -4,7 +4,7 @@ var webpack = require('webpack');
 
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     devtool: 'source-map',
     entry: {
         main: path.join(__dirname, '/src/main.jsx'),

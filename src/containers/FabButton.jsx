@@ -8,7 +8,7 @@ import FileDownload from 'material-ui-icons/FileDownload';
 const styles = theme => ({
     fab: {
         position: 'fixed',
-        bottom: theme.spacing.unit * 4,
+        bottom: theme.spacing.unit * 6,
         right: theme.spacing.unit * 3,
     },
 });

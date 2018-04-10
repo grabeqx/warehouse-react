@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
 
 const styles = theme => ({
     paper: {
@@ -16,10 +17,13 @@ const styles = theme => ({
     image: {
         maxWidth: "100%",
         marginBottom: "-4px"
+    },
+    pullRight: {
+        float: 'right'
     }
 });
 
-const ProductViewTop = ({product, classes, animationType, visible}) => {
+const ProductViewTop = ({product, classes, animationType, visible, isAdmin, editProduct}) => {
     const Animation = animationType;
     return (
         <Animation in={visible}>
@@ -31,6 +35,7 @@ const ProductViewTop = ({product, classes, animationType, visible}) => {
                 </Grid>
                 <Grid item xs={8}>
                     <Paper className={classes.paper}>
+                        {isAdmin ? <Button color="primary" onClick={editProduct} className={classes.pullRight}>Edytuj</Button> : null}
                         <Typography variant="display2" gutterBottom>
                             {product.name}
                         </Typography>

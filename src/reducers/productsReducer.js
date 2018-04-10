@@ -7,21 +7,21 @@ const productsReducer = (state = {
     query: '',
     filterStart: '',
     filterEnd: '',
-    productAlert: 50
+    productAlert: 5,
+    loadNewProducts: 0
 }, action) => {
     switch(action.type) {
 
         case ACTIONS.GET_PRODUCTS_SUCCESS:
             return {
                 ...state,
-                productPage: state.productPage + 1,
-                products: [...state.products, ...action.payload]
+                products: action.payload,
+                loadNewProducts: 0
             }
         case ACTIONS.SEARCH_PRODUCTS:
             return {
                 ...state,
                 products: [],
-                productPage: state.productPage * 0,
                 query: action.payload.query
             }
         case ACTIONS.FILTER_PRODUCTS:
@@ -47,16 +47,16 @@ const productsReducer = (state = {
                 products: []
             }
         }
-        case ACTIONS.GET_CONFIG_SUCCESS: {
+        case ACTIONS.REMOVE_PRODUCT: {
             return {
                 ...state,
-                productAlert: action.payload.config.productAlert
+                loadNewProducts: 0
             }
         }
-        case ACTIONS.SAVE_CONFIG: {
+        case ACTIONS.REMOVE_PRODUCT_SUCCESS: {
             return {
                 ...state,
-                productAlert: action.payload.config.productAlert
+                loadNewProducts: 1
             }
         }
         default:

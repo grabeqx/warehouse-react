@@ -11,21 +11,32 @@ import Typography from "material-ui/Typography";
 import { MenuItem } from "material-ui/Menu";
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
+import Menu from 'material-ui-icons/Menu';
+import IconButton from 'material-ui/IconButton';
 
 import UserInfo from './UserInfo';
+import { handleDrawerToggle } from '../actions/actions';
 
 const drawerWidth = 240;
 const styles = theme => ({
     appBar: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        
+        marginLeft: drawerWidth,
+        [theme.breakpoints.up('md')]: {
+          width: `calc(100% - ${drawerWidth}px)`,
+        },
+        padding: '5px'
     },
     root: {
         flexGrow: 1,
     },
     flex: {
         flex: 1,
-    }
+    },
+    navIconHide: {
+        [theme.breakpoints.up('md')]: {
+          display: 'none',
+        },
+    },
 });
 
 var MainAppBar = (props) => {
@@ -33,8 +44,16 @@ var MainAppBar = (props) => {
     return (
         <AppBar
             position="fixed"
-            className={classNames(classes.appBar, classes[`appBar-left`], classes.root)}>
+            className={classNames(classes.appBar, classes.root)}>
             <Toolbar>
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={props.handleDrawerToggle}
+                    className={classes.navIconHide}
+                >
+                    <Menu />
+                </IconButton>
                 <Typography variant="title" color="inherit" noWrap className={classes.flex}>
                 {props.title}
                 </Typography>
@@ -51,4 +70,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default compose(withStyles(styles),connect(mapStateToProps, null))(MainAppBar);
+export default compose(withStyles(styles),connect(mapStateToProps, {handleDrawerToggle}))(MainAppBar);

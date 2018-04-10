@@ -28,12 +28,12 @@ const styles = theme => ({
     }
 });
 
-const AddForm = (props) => {
+const ProductForm = (props) => {
     const Animation = props.animationType;
     return (
         <Animation in={props.visible}>
             <Grid container spacing={24}>
-                <Grid item xs={5}>
+                <Grid item xs={6}>
                     <Paper className={props.classes.paper}>
                         <Typography variant="headline" gutterBottom>Wypełnij dane o produkcie</Typography>
                         <form onSubmit={props.submitForm}>
@@ -48,11 +48,14 @@ const AddForm = (props) => {
                                     <FormInput title="Ilosć" name="quantity" type="number" onChange={props.onChange} value={props.values.quantity}/>
                                 </Grid>
                                 <Grid item xs={12} className={props.classes.inputContainer}>
+                                    <FormInput title="Podświetlenie od" name="quantityAlert" type="number" onChange={props.onChange} value={props.values.quantityAlert}/>
+                                </Grid>
+                                <Grid item xs={12} className={props.classes.inputContainer}>
                                     <FormInput title="Zdjęcie" name="image" type="file" onChange={props.onChange} value={props.values.image}/>
                                 </Grid>
                                 <Grid item xs={6} className={props.classes.inputContainer}>
                                     <FormControl>
-                                        <Button variant="raised" color="primary" className={props.classes.button} type="submit">Dodaj</Button>
+                                        <Button variant="raised" color="primary" className={props.classes.button} type="submit">{props.submitText}</Button>
                                     </FormControl>
                                     {props.showLoader ? <CircularProgress size={35}/> : null}
                                 </Grid>
@@ -65,4 +68,4 @@ const AddForm = (props) => {
     )
 }
 
-export default withStyles(styles)(AddForm);
+export default withStyles(styles)(ProductForm);
